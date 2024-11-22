@@ -7,8 +7,7 @@ public class NodesController : MonoBehaviour
     public GameManager gameManager;
 
     public List<GameObject> cells;
-
-    
+    public GameObject cellOnTop;
 
     void Start()
     {
@@ -28,6 +27,8 @@ public class NodesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        cellOnTop = gameObject.transform.GetChild(transform.childCount-1).gameObject;
+
+
     }
 }

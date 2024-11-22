@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CellController : MonoBehaviour
@@ -12,9 +14,17 @@ public class CellController : MonoBehaviour
         Purple = 2,
         Red = 3,
         Yellow = 4
-    }
+    } public CellColor cellColor;
 
-    public CellColor cellColor;
+    public enum HousedElement
+    {
+        Frog,
+        Berry,
+        Arrow
+    } public HousedElement housedElement;
+
+    public GameObject housedGameObject;
+    public GameObject parentNode;
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +52,37 @@ public class CellController : MonoBehaviour
                 break;
         }
 
+        if(gameObject.transform.parent != null)
+        {
+            parentNode = gameObject.transform.parent.gameObject;
+        }
+        if (gameObject.transform.childCount > 0)
+        {
+            housedGameObject = gameObject.transform.GetChild(0).gameObject;
+        }
+
+        if (parentNode.GetComponent<NodesController>() != null)
+        {
+            if (parentNode.GetComponent<NodesController>().cellOnTop != this.gameObject)
+            {
+                if (housedGameObject != null)
+                {
+                    housedGameObject.SetActive(false);
+                }
+            }
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       //
     }
 
     void setObjectPosition()
     {
-
+        
 
 
     }
