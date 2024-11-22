@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance;
     //public GameGridController gameGridController;
 
@@ -12,19 +11,25 @@ public class GameManager : MonoBehaviour
     public GameObject FrogPrefab;
     public GameObject GrapePrefab;
 
-    
+    public List<Material> cellMaterials;
+    public List<Material> frogMaterials;
+    public List<Material> berryMaterials;
+
 
     private void Awake()
     {
         if (Instance == null)
         {
-            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        else if(Instance != this) 
+        else
         {
             Destroy(gameObject);
+            return;
         }
+
+        DontDestroyOnLoad(gameObject);
+
     }
     // Start is called before the first frame update
     void Start()
