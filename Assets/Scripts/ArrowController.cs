@@ -6,6 +6,7 @@ public class ArrowController : MonoBehaviour
 {
     public GameManager gameManager;
 
+    public GameObject arrowParentNode;
     public enum ArrowDirection
     {
         Up = 0,

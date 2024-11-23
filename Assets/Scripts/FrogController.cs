@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ArrowController;
 using static CellController;
 
 public class FrogController : MonoBehaviour
 {
     public GameManager gameManager;
+
+    public GameObject frogParentNode;
+    public enum FrogDirection
+    {
+        Up = 0,
+        Down = 1,
+        Left = 2,
+        Right = 3,
+    }
+    public FrogDirection direction;
 
     // Start is called before the first frame update
     void Start()
@@ -14,29 +25,30 @@ public class FrogController : MonoBehaviour
 
         Renderer renderer = gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         renderer.material = gameManager.frogMaterials[((int)gameObject.transform.parent.GetComponent<CellController>().cellColor)];
-  
+
+        switch (direction)
+        {
+            case FrogDirection.Up:
+                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180, gameObject.transform.eulerAngles.z);
+                break;
+            case FrogDirection.Down:
+                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 0, gameObject.transform.eulerAngles.z);
+                break;
+            case FrogDirection.Left:
+                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 90, gameObject.transform.eulerAngles.z);
+                break;
+            case FrogDirection.Right:
+                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 270, gameObject.transform.eulerAngles.z);
+                break;
+        }
+
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                if(hit.collider != null && hit.collider.gameObject.CompareTag("Frog"))
-                {
-
-                    Debug.Log("FrogClicked");
-                }
-
-            }
-
-
-        }*/
 
         
     }

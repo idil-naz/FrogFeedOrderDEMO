@@ -6,6 +6,8 @@ public class BerryController : MonoBehaviour
 {
     public GameManager gameManager;
 
+    public GameObject berryParentNode;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+//using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ public class CellController : MonoBehaviour
     } public HousedElementType housedElementType;
 
     public GameObject housedGameObject;
-    public GameObject parentNode;
+    public GameObject cellParentNode;
 
     private void Awake()
     {
@@ -58,13 +58,13 @@ public class CellController : MonoBehaviour
                 break;
         }
 
-        if (gameObject.transform.parent != null) parentNode = gameObject.transform.parent.gameObject;
+        if (gameObject.transform.parent != null) cellParentNode = gameObject.transform.parent.gameObject;
         if (gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
 
 
         if (housedGameObject != null)
         {
-            if (parentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
+            if (cellParentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
             {
                 housedGameObject.SetActive(false);
             }
@@ -72,8 +72,20 @@ public class CellController : MonoBehaviour
             {
                 housedGameObject.SetActive(true);
             }
-        }
 
+            if (housedElementType == HousedElementType.Frog)
+            {
+                housedGameObject.GetComponent<FrogController>().frogParentNode = cellParentNode;
+            }
+            else if (housedElementType == HousedElementType.Berry)
+            {
+                housedGameObject.GetComponent<BerryController>().berryParentNode = cellParentNode;
+            }
+            else if (housedElementType == HousedElementType.Arrow)
+            {
+                housedGameObject.GetComponent<ArrowController>().arrowParentNode = cellParentNode;
+            }
+        }
 
         // Update is called once per frame
         void Update()

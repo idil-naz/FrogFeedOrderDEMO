@@ -1,4 +1,4 @@
-using Palmmedia.ReportGenerator.Core.Common;
+//using Palmmedia.ReportGenerator.Core.Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +35,6 @@ public class NodesController : MonoBehaviour
 
     void Start()
     {
-        
-
         setCellPositions();
     }
 
@@ -47,13 +45,13 @@ public class NodesController : MonoBehaviour
 
     }
 
- 
     public void updateCellOnTop(GameObject newCellonTop)
     {
         cellOnTop = newCellonTop; 
     }
 
     public GameObject getCellOnTop() {
+
         return cellOnTop;
     }
 
@@ -61,7 +59,7 @@ public class NodesController : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
-            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.13f, cells[i].transform.localPosition.z);
+            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.12f, cells[i].transform.localPosition.z);
 
         }
     }

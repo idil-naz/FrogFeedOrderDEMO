@@ -2,24 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class GameGridController : MonoBehaviour
 {
 
     public List<GameObject> allNodes;
-    public GameObject nodesParent;
-
-   // int rows = 6;
-    //int cols = 6;
+    public GameObject nodesParentHolder;
 
     private void Awake()
     {
-        for (int i = 0; i< nodesParent.transform.childCount; i++)
+        for (int i = 0; i< nodesParentHolder.transform.childCount; i++)
         {
-            allNodes.Add(nodesParent.transform.GetChild(i).gameObject);
+            allNodes.Add(nodesParentHolder.transform.GetChild(i).gameObject);
             allNodes[i].GetComponent<NodesController>().gameGrid = this.gameObject.GetComponent<GameGridController>();
-
-            
         }
 
         
