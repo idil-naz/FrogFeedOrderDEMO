@@ -18,6 +18,8 @@ public class FrogController : MonoBehaviour
     }
     public FrogDirection direction;
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,9 @@ public class FrogController : MonoBehaviour
                 break;
         }
 
-        
+        //Path.AddFirst(frogParentNode);
+        //foreach(var x in Path)
+        //Debug.Log(x.ToString());
 
     }
 
@@ -56,6 +60,14 @@ public class FrogController : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("FrogClicked");
+
+        
+
+    }
+
+    IEnumerator StartPathing()
+    {
+        yield return null;
     }
 
 }
