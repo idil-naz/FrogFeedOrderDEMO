@@ -1,0 +1,19 @@
+An overview of script responsibilties so far. (by idil naz bakandi on 23 november 2024)
+
+// This file is for me to update and track later on.
+
+ArrowController: Keeps the direction and coordinate information of the Arrow it is attached to.
+BerryController: Keeps the coordinate information of the Berry (Grape) it is attached to.
+CellController: Keeps color and coordinate information of the cell, as well as the type of object that it is housing (A frog, a berry, or an arrow). 
+                - It's responsible for passing coordinate information to ArrowController and BerryController so that they know the node that's housing them.
+                - Responsible for checking to see if it is the top cell in its own node. If it is, it makes the object it is housing visible.
+FrogController: Keeps direction and coordinate information of the frog.
+GameGridController: Holds information on all the nodes on the 6x6 grid.
+                    - Responsible for passing itself to all the nodes in the grid.
+                    - Responsible for passing neighbor information to all nodes in the grid so that all the nodes have information on their neighbors.
+NodesController: Has coordinate, neighbor, and cells information. Nodes can have multiple cells stakced on top of each other. 
+                - This script is responsible for knowing which cell is on the very top of the stack.
+                - It is also responsible for correctly setting the positions of cells on top of each other, so that the level designer needs to only duplicate the cells in the hierarchy, and this script can handle the rest.
+GameManager: For now, this script only holds material information so that objects can color themselves according to the cell they are on top of.
+                
+                
