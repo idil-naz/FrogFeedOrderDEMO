@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &22135527
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &93897126
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 4
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &172742134
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &219908453
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 3
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &249734380
@@ -995,7 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &412284802
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &421781696
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &482051272
@@ -1316,7 +1316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &547716309
 Transform:
   m_ObjectHideFlags: 0
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!1 &662502447
@@ -1536,7 +1536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &667205870
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 4
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &690369166
@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &736398093
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &778391400
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &792840692
@@ -2135,7 +2135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &848352436
 Transform:
   m_ObjectHideFlags: 0
@@ -2183,7 +2183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &881337700
 Transform:
   m_ObjectHideFlags: 0
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!1 &1041952248
@@ -2508,7 +2508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1041952251
@@ -2578,7 +2578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1086418018
 Transform:
   m_ObjectHideFlags: 0
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 3
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1115215526
@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1157546593
@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1185734740
@@ -3170,7 +3170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1216559513
 Transform:
   m_ObjectHideFlags: 0
@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 4
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!1 &1336991075
@@ -3399,7 +3399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1336991078
@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1416560019
@@ -3796,7 +3796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!1 &1439431466
@@ -3815,7 +3815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1439431467
 Transform:
   m_ObjectHideFlags: 0
@@ -3897,7 +3897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1523717648
@@ -4050,7 +4050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!1 &1616628268
@@ -4304,7 +4304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1842780798
 Transform:
   m_ObjectHideFlags: 0
@@ -4384,7 +4384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1895486956
@@ -4633,7 +4633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 2
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &1994061126
@@ -4703,7 +4703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2046366949
 Transform:
   m_ObjectHideFlags: 0
@@ -4833,7 +4833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 1
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &2101277893
@@ -4935,7 +4935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!23 &2129571901
@@ -7876,7 +7876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   cellColor: 0
-  housedElement: 0
+  housedElementType: 0
   housedGameObject: {fileID: 0}
   parentNode: {fileID: 0}
 --- !u!4 &9096611586787151204

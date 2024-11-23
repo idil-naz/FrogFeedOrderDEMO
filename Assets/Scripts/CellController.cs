@@ -16,12 +16,12 @@ public class CellController : MonoBehaviour
         Yellow = 4
     } public CellColor cellColor;
 
-    public enum HousedElement
+    public enum HousedElementType
     {
         Frog,
         Berry,
         Arrow
-    } public HousedElement housedElement;
+    } public HousedElementType housedElementType;
 
     public GameObject housedGameObject;
     public GameObject parentNode;
@@ -52,25 +52,32 @@ public class CellController : MonoBehaviour
                 break;
         }
 
-        if(gameObject.transform.parent != null)
-        {
-            parentNode = gameObject.transform.parent.gameObject;
-        }
-        if (gameObject.transform.childCount > 0)
-        {
-            housedGameObject = gameObject.transform.GetChild(0).gameObject;
-        }
+        if(gameObject.transform.parent != null) parentNode = gameObject.transform.parent.gameObject;
+        if(gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
 
-        if (parentNode.GetComponent<NodesController>() != null)
+    
+        //if this cell is the top cell in its own node, then the housed object of this cell should be setactive true.
+        //if this cell is not the top cell in its own node, then the housed object of this cell should be setactive false.
+
+        if(housedGameObject != null)
         {
             if (parentNode.GetComponent<NodesController>().cellOnTop != this.gameObject)
             {
-                if (housedGameObject != null)
-                {
-                    housedGameObject.SetActive(false);
-                }
+                housedGameObject.SetActive(false);
+            }
+            else
+            {
+                housedGameObject.SetActive(true);
             }
         }
+
+        Debug.Log($"cellOnTop: {parentNode.GetComponent<NodesController>().cellOnTop}, this GameObject: {this.gameObject.name}");
+
+
+
+        //all cells have one housed object child
+        //all cells are parented by a node
+
 
     }
 

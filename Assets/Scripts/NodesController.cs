@@ -21,14 +21,22 @@ public class NodesController : MonoBehaviour
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
             cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x,i*0.13f, cells[i].transform.localPosition.z);
-        } 
 
+
+        }
+
+        cellOnTop = gameObject.transform.GetChild(transform.childCount - 1).gameObject;
+        updateCellOnTop(cellOnTop);
     }
     // Update is called once per frame
     void Update()
     {
-        cellOnTop = gameObject.transform.GetChild(transform.childCount-1).gameObject;
 
 
+    }
+
+    public void updateCellOnTop(GameObject newCellonTop)
+    {
+        cellOnTop = newCellonTop;
     }
 }
