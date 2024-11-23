@@ -76,7 +76,7 @@ public class CellController : MonoBehaviour
             }
         }
 
-        Debug.Log($"cellOnTop: {parentNode.GetComponent<NodesController>().getCellOnTop()}, this GameObject: {this.gameObject.name}");
+        //Debug.Log($"cellOnTop: {parentNode.GetComponent<NodesController>().getCellOnTop()}, this GameObject: {this.gameObject.name}");
 
         //setObjectPosition();
 
