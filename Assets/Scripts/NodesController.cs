@@ -9,24 +9,24 @@ public class NodesController : MonoBehaviour
     public List<GameObject> cells;
     public GameObject cellOnTop;
 
-    void Start()
+    private void Awake()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             cells.Add(gameObject.transform.GetChild(i).gameObject);
-            //cells[i].gameObject.AddComponent<CellController>();
 
+            cellOnTop = gameObject.transform.GetChild(transform.childCount - 1).gameObject;
+            updateCellOnTop(cellOnTop);
         }
 
-        for (int i = 1; i < gameObject.transform.childCount; i++)
-        {
-            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x,i*0.13f, cells[i].transform.localPosition.z);
+       
+    }
 
+    void Start()
+    {
 
-        }
+        setCellPositions();
 
-        cellOnTop = gameObject.transform.GetChild(transform.childCount - 1).gameObject;
-        updateCellOnTop(cellOnTop);
     }
     // Update is called once per frame
     void Update()
@@ -37,6 +37,20 @@ public class NodesController : MonoBehaviour
 
     public void updateCellOnTop(GameObject newCellonTop)
     {
-        cellOnTop = newCellonTop;
+        cellOnTop = newCellonTop; 
+    }
+
+    public GameObject getCellOnTop() {
+        //print("this GO: "+ this.gameObject.name + "cell on top: " + cellOnTop.name);
+        return cellOnTop;
+    }
+
+    void setCellPositions()
+    {
+        for (int i = 1; i < gameObject.transform.childCount; i++)
+        {
+            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.13f, cells[i].transform.localPosition.z);
+
+        }
     }
 }

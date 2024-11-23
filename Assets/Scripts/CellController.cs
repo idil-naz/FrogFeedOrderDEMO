@@ -26,6 +26,11 @@ public class CellController : MonoBehaviour
     public GameObject housedGameObject;
     public GameObject parentNode;
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,16 +57,16 @@ public class CellController : MonoBehaviour
                 break;
         }
 
-        if(gameObject.transform.parent != null) parentNode = gameObject.transform.parent.gameObject;
-        if(gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
+        if (gameObject.transform.parent != null) parentNode = gameObject.transform.parent.gameObject;
+        if (gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
 
-    
+
         //if this cell is the top cell in its own node, then the housed object of this cell should be setactive true.
         //if this cell is not the top cell in its own node, then the housed object of this cell should be setactive false.
 
-        if(housedGameObject != null)
+        if (housedGameObject != null)
         {
-            if (parentNode.GetComponent<NodesController>().cellOnTop != this.gameObject)
+            if (parentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
             {
                 housedGameObject.SetActive(false);
             }
@@ -71,9 +76,9 @@ public class CellController : MonoBehaviour
             }
         }
 
-        Debug.Log($"cellOnTop: {parentNode.GetComponent<NodesController>().cellOnTop}, this GameObject: {this.gameObject.name}");
+        Debug.Log($"cellOnTop: {parentNode.GetComponent<NodesController>().getCellOnTop()}, this GameObject: {this.gameObject.name}");
 
-
+        //setObjectPosition();
 
         //all cells have one housed object child
         //all cells are parented by a node
@@ -89,7 +94,14 @@ public class CellController : MonoBehaviour
 
     void setObjectPosition()
     {
-        
+        int housedGameObjectIndex = parentNode.GetComponent<NodesController>().cells.IndexOf(gameObject);
+
+        if (parentNode.GetComponent<NodesController>().cells.Count > 1)
+        {
+            housedGameObject.transform.localPosition += new Vector3(housedGameObject.transform.localPosition.x,
+                                                                    housedGameObject.transform.localPosition.y + housedGameObjectIndex * 0.015f,
+                                                                    housedGameObject.transform.localPosition.z);
+        }
 
 
     }
