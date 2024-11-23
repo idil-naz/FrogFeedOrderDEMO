@@ -9,8 +9,8 @@ public class GameGridController : MonoBehaviour
     public List<GameObject> allNodes;
     public GameObject nodesParent;
 
-    int rows = 6;
-    int cols = 6;
+   // int rows = 6;
+    //int cols = 6;
 
     private void Awake()
     {

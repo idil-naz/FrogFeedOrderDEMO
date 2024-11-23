@@ -2223,6 +2223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239020170}
   - component: {fileID: 239020171}
+  - component: {fileID: 239020172}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -2260,6 +2261,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+--- !u!65 &239020172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239020169}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &249734377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,6 +4667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558668458}
   - component: {fileID: 558668459}
+  - component: {fileID: 558668460}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -4682,6 +4705,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+--- !u!65 &558668460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558668457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &561373357
 GameObject:
   m_ObjectHideFlags: 0
@@ -10755,7 +10799,7 @@ Transform:
   m_GameObject: {fileID: 1407836277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.33, y: 0.275, z: -0.001}
+  m_LocalPosition: {x: -6.208, y: 0.275, z: -0.001}
   m_LocalScale: {x: 0.1, y: 0.015, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16655,9 +16699,10 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653558485702}
   - component: {fileID: 919132149305501821}
+  - component: {fileID: 919132149305501822}
   m_Layer: 0
   m_Name: Frog
-  m_TagString: Untagged
+  m_TagString: Frog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16675,6 +16720,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+--- !u!65 &919132149305501822
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149305501820}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &983985735305116778
 Transform:
   m_ObjectHideFlags: 0
