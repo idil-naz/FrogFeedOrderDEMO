@@ -1,5 +1,7 @@
+using Palmmedia.ReportGenerator.Core.Common;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NodesController : MonoBehaviour
@@ -9,8 +11,18 @@ public class NodesController : MonoBehaviour
     public List<GameObject> cells;
     public GameObject cellOnTop;
 
+    public int xCoordinate, yCoordinate;
+    public NodesController leftNode, rightNode, frontNode, backNode;
+
+    public GameGridController gameGrid;
+
     private void Awake()
     {
+        string[] coordinates = name.Split('x');
+        xCoordinate = int.Parse(coordinates[0]);
+        yCoordinate = int.Parse(coordinates[1]);
+
+
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             cells.Add(gameObject.transform.GetChild(i).gameObject);
@@ -19,15 +31,15 @@ public class NodesController : MonoBehaviour
             updateCellOnTop(cellOnTop);
         }
 
-       
     }
 
     void Start()
     {
+        
 
         setCellPositions();
-
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,13 +47,13 @@ public class NodesController : MonoBehaviour
 
     }
 
+ 
     public void updateCellOnTop(GameObject newCellonTop)
     {
         cellOnTop = newCellonTop; 
     }
 
     public GameObject getCellOnTop() {
-        //print("this GO: "+ this.gameObject.name + "cell on top: " + cellOnTop.name);
         return cellOnTop;
     }
 
@@ -53,4 +65,6 @@ public class NodesController : MonoBehaviour
 
         }
     }
+
+
 }

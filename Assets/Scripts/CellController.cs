@@ -26,6 +26,8 @@ public class CellController : MonoBehaviour
     public GameObject housedGameObject;
     public GameObject parentNode;
 
+   
+
     private void Awake()
     {
         
@@ -105,4 +107,6 @@ public class CellController : MonoBehaviour
 
 
     }
+
+    
 }
