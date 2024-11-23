@@ -16,9 +16,22 @@ public class FrogController : MonoBehaviour
         Left = 2,
         Right = 3,
     }
-    public FrogDirection direction;
+    public FrogDirection frogDirection;
 
-   
+   /*
+    FOR PATHING
+    
+    */
+    public enum Direction
+    {
+        Up = 0,
+        Down = 1,
+        Left = 2,
+        Right = 3,
+    }
+    public Direction currentDirection;
+
+    public bool isMoving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +41,7 @@ public class FrogController : MonoBehaviour
         Renderer renderer = gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         renderer.material = gameManager.frogMaterials[((int)gameObject.transform.parent.GetComponent<CellController>().cellColor)];
 
-        switch (direction)
+        switch (frogDirection)
         {
             case FrogDirection.Up:
                 gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180, gameObject.transform.eulerAngles.z);
@@ -44,9 +57,7 @@ public class FrogController : MonoBehaviour
                 break;
         }
 
-        //Path.AddFirst(frogParentNode);
-        //foreach(var x in Path)
-        //Debug.Log(x.ToString());
+        currentDirection = (Direction)frogDirection;
 
     }
 
@@ -60,14 +71,70 @@ public class FrogController : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("FrogClicked");
-
-        
+        if (!isMoving)
+        {
+            StartCoroutine(StartPathing());
+        }
 
     }
 
     IEnumerator StartPathing()
     {
-        yield return null;
+        isMoving = true;
+
+        while (isMoving)
+        {
+            NodesController nextNode = getNextNode(currentDirection);
+            Debug.Log(nextNode.name);
+            isMoving = false;
+            yield return new WaitForSeconds(0.05f);
+        }
+        //Move in the direction of the Frog's direction.
+        //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
+        //check the HOUSED OBJECT of the TOP CELL.
+
+        //If the housed object is a berry, collect it and move to the next NODE in the direction of the frog. Check the TOP CELL of that NODE.
+        //IF the housed object in an arrow, collect it and move to the next NODE in the direction of the arrow. Check the TOP CELL of that NODE.
+
+        //Continue with the same logic.
+
+       
+    }
+
+    NodesController getNextNode(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return frogParentNode.GetComponent<NodesController>().frontNode;
+            case Direction.Down:
+                return frogParentNode.GetComponent<NodesController>().backNode;
+            case Direction.Left:
+                return frogParentNode.GetComponent<NodesController>().leftNode;
+            case Direction.Right:
+                return frogParentNode.GetComponent<NodesController>().rightNode;
+            default:
+                return null;
+        }
+        
+    }
+
+    NodesController getNextNode(FrogDirection direction)
+    {
+        switch (direction)
+        {
+            case FrogDirection.Up:
+                return frogParentNode.GetComponent<NodesController>().frontNode;
+            case FrogDirection.Down:
+                return frogParentNode.GetComponent<NodesController>().backNode;
+            case FrogDirection.Left:
+                return frogParentNode.GetComponent<NodesController>().leftNode;
+            case FrogDirection.Right:
+                return frogParentNode.GetComponent<NodesController>().rightNode;
+            default:
+                return null;
+        }
+
     }
 
 }

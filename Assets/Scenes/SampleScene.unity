@@ -2263,7 +2263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 0}
-  direction: 3
+  frogDirection: 3
+  currentDirection: 0
+  isMoving: 0
 --- !u!65 &239020172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4710,7 +4712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 0}
-  direction: 0
+  frogDirection: 0
+  currentDirection: 0
+  isMoving: 0
 --- !u!65 &558668460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16744,7 +16748,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 0}
-  direction: 0
+  frogDirection: 0
+  currentDirection: 0
+  isMoving: 0
 --- !u!65 &919132149305501822
 BoxCollider:
   m_ObjectHideFlags: 0
