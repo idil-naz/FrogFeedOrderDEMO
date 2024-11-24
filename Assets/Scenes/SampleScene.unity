@@ -7264,7 +7264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0407037405ea34c8f5fb537961e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 0.5
   parentFrog: {fileID: 0}
 --- !u!120 &859789953
 LineRenderer:

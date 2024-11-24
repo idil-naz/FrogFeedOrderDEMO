@@ -82,7 +82,7 @@ public class FrogController : MonoBehaviour
         Debug.Log("FrogClicked");
         if (!isMoving)
         {
-            StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+            //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
             StartCoroutine(StartPathing());
             gameObject.GetComponent<Collider>().enabled = false;
         }
@@ -105,16 +105,22 @@ public class FrogController : MonoBehaviour
                 if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
                 {
                     Debug.Log("top cell colors match..." + "next node in path: " + nextNode.name);
-
                     currentNode = nextNode;
+
                     GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
 
                     Debug.Log("new current node: " + currentNode.name);
 
+                    //COROUTINE CALL
+                    StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
                         Debug.Log("object type on the next cell is a grape..collecting grape");
+                        
+                        //COROUTINE CALL
+                        //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+
 
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
@@ -122,6 +128,9 @@ public class FrogController : MonoBehaviour
                         Debug.Log("object type on the next cell is an arrow..changing direction");
                         currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
                         Debug.Log("current direction: " + currentDirection);
+
+                        //COROUTINE CALL
+                        //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
 
                     }
 
