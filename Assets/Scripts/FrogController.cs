@@ -18,9 +18,8 @@ public class FrogController : MonoBehaviour
         Right = 3,
     }
     public FrogDirection frogDirection;
-
     
-    //FOR PATHING
+    //PATHING
     public NodesController currentNode;
     public enum Direction
     {
@@ -32,7 +31,6 @@ public class FrogController : MonoBehaviour
     public Direction currentDirection;
 
     public bool isMoving = false;
-
 
     //FROG TOUNGE
     public LineRenderer frogTounge;
@@ -65,16 +63,6 @@ public class FrogController : MonoBehaviour
         currentDirection = (Direction)frogDirection;
         frogParentNode = gameObject.transform.parent.transform.parent.gameObject;
         currentNode = frogParentNode.GetComponent<NodesController>();
-
-       
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
     }
 
     private void OnMouseDown()
@@ -82,7 +70,6 @@ public class FrogController : MonoBehaviour
         Debug.Log("FrogClicked");
         if (!isMoving)
         {
-            //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
             StartCoroutine(StartPathing());
             gameObject.GetComponent<Collider>().enabled = false;
         }
@@ -117,21 +104,12 @@ public class FrogController : MonoBehaviour
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
                         Debug.Log("object type on the next cell is a grape..collecting grape");
-                        
-                        //COROUTINE CALL
-                        //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
-
-
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
                     {
                         Debug.Log("object type on the next cell is an arrow..changing direction");
                         currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
                         Debug.Log("current direction: " + currentDirection);
-
-                        //COROUTINE CALL
-                        //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
-
                     }
 
                 }
@@ -161,6 +139,8 @@ public class FrogController : MonoBehaviour
             //gameObject.GetComponent<Collider>().enabled = true;
             
         }
+
+        /*THE LOGIC*/
         //Move in the direction of the Frog's direction.
         //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
         //check the HOUSED OBJECT of the TOP CELL.

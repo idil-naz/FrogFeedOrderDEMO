@@ -38,13 +38,6 @@ public class NodesController : MonoBehaviour
         setCellPositions();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
     public void updateCellOnTop(GameObject newCellonTop)
     {
         cellOnTop = newCellonTop; 
@@ -63,6 +56,4 @@ public class NodesController : MonoBehaviour
 
         }
     }
-
-
 }

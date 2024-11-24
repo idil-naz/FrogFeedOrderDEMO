@@ -15,19 +15,11 @@ public class GameGridController : MonoBehaviour
             allNodes.Add(nodesParentHolder.transform.GetChild(i).gameObject);
             allNodes[i].GetComponent<NodesController>().gameGrid = this.gameObject.GetComponent<GameGridController>();
         }
-
-        
     }
     // Start is called before the first frame update
     void Start()
     {
         assignNeighbors();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void assignNeighbors()

@@ -27,11 +27,6 @@ public class CellController : MonoBehaviour
     public GameObject housedGameObject;
     public GameObject cellParentNode;
 
-    private void Awake()
-    {
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -86,13 +81,5 @@ public class CellController : MonoBehaviour
                 housedGameObject.GetComponent<ArrowController>().arrowParentNode = cellParentNode;
             }
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
-
     }
 }

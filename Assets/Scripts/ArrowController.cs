@@ -39,10 +39,4 @@ public class ArrowController : MonoBehaviour
                 break;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -9,8 +9,6 @@ public class FrogToungeScript : MonoBehaviour
     private LineRenderer frogTounge;
     private List<Vector3> points;
 
-    //private int pointsCount;
-
     public FrogController parentFrog;
     // Start is called before the first frame update
     void Start()
@@ -25,33 +23,16 @@ public class FrogToungeScript : MonoBehaviour
                 parentFrog.transform.position.x,
                 parentFrog.transform.position.y + 0.15f * parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.transform.parent.gameObject),
                 parentFrog.transform.position.z
-
             );
 
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
         frogTounge.SetPosition(0, initPos);
 
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public IEnumerator ToungeAnim()
     {
-        //frogTounge.positionCount++;
-
-        //float lineSegmentDuration = duration / pointsCount;
-
         Vector3 startingPos = points[points.Count - 1];
-
-
-        //for (int i = 0; i < frogTounge.positionCount - 1; i++)
-        //{
         Vector3 endingPos;
 
         switch (parentFrog.currentDirection)

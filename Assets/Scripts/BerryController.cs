@@ -17,10 +17,4 @@ public class BerryController : MonoBehaviour
         renderer.material = gameManager.berryMaterials[((int)gameObject.transform.parent.GetComponent<CellController>().cellColor)];
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

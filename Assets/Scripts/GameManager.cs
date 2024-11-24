@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    //public GameGridController gameGridController;
 
     public GameObject CellPrefab;
     public GameObject FrogPrefab;
