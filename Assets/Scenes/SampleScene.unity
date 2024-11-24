@@ -431,7 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -1887,7 +1886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -2172,7 +2170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -2262,12 +2259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d113eca7e04cf348a66abe070d639fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 2131753141}
   frogDirection: 3
   currentNode: {fileID: 0}
   currentDirection: 0
-  isMoving: 0
+  pathingExecutionTime: 0.15
   frogTounge: {fileID: 859789953}
 --- !u!65 &239020172
 BoxCollider:
@@ -2605,7 +2601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -2793,7 +2788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0407037405ea34c8f5fb537961e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
   parentFrog: {fileID: 0}
 --- !u!120 &283845770
 LineRenderer:
@@ -3141,7 +3135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -3362,7 +3355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -3778,7 +3770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -4672,7 +4663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -4864,12 +4854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d113eca7e04cf348a66abe070d639fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 2131753141}
   frogDirection: 0
   currentNode: {fileID: 0}
   currentDirection: 0
-  isMoving: 0
+  pathingExecutionTime: 0.25
   frogTounge: {fileID: 283845770}
 --- !u!65 &558668460
 BoxCollider:
@@ -5763,7 +5752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -6373,7 +6361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -6530,7 +6517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0407037405ea34c8f5fb537961e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
   parentFrog: {fileID: 0}
 --- !u!120 &782075571
 LineRenderer:
@@ -7209,7 +7195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -7264,7 +7249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0407037405ea34c8f5fb537961e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.5
   parentFrog: {fileID: 0}
 --- !u!120 &859789953
 LineRenderer:
@@ -7520,7 +7504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -7670,7 +7653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -9013,7 +8995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -9304,7 +9285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -9425,7 +9405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -9480,7 +9459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -10076,7 +10054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -10324,7 +10301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -10783,7 +10759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -10838,7 +10813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -11323,7 +11297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -11483,7 +11456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -13081,7 +13053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -13901,7 +13872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -13988,7 +13958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -14304,7 +14273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -14359,7 +14327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -14446,7 +14413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -15390,7 +15356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -15445,7 +15410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -15637,7 +15601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -16099,7 +16062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -16352,7 +16314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -16742,7 +16703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -16831,7 +16791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16b513cdbb0afe48a33d8d20f499473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   cells: []
   cellOnTop: {fileID: 0}
   xCoordinate: 0
@@ -17098,12 +17057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d113eca7e04cf348a66abe070d639fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1165659949}
   frogParentNode: {fileID: 2131753141}
   frogDirection: 0
   currentNode: {fileID: 0}
   currentDirection: 0
-  isMoving: 0
+  pathingExecutionTime: 1
   frogTounge: {fileID: 782075571}
 --- !u!65 &919132149305501822
 BoxCollider:

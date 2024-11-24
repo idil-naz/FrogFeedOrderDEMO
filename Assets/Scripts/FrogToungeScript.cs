@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrogToungeScript : MonoBehaviour
 {
-    [SerializeField] public float duration = 1f;
+    private float duration;
 
     private LineRenderer frogTounge;
     private List<Vector3> points;
@@ -14,6 +14,7 @@ public class FrogToungeScript : MonoBehaviour
     void Start()
     {
         parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
+        duration = parentFrog.pathingExecutionTime;
 
         frogTounge = GetComponent<LineRenderer>();
         points = new List<Vector3>();

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NodesController : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public List<GameObject> cells;
     public GameObject cellOnTop;

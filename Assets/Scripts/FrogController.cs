@@ -7,7 +7,7 @@ using static CellController;
 
 public class FrogController : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public GameObject frogParentNode;
     public enum FrogDirection
@@ -30,7 +30,8 @@ public class FrogController : MonoBehaviour
     }
     public Direction currentDirection;
 
-    public bool isMoving = false;
+    public float pathingExecutionTime = 0.25f;
+    private bool isMoving = false;
 
     //FROG TOUNGE
     public LineRenderer frogTounge;
@@ -124,7 +125,7 @@ public class FrogController : MonoBehaviour
                 }
 
                 isMoving = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(pathingExecutionTime);
                 yield return StartCoroutine(StartPathing());
             }
             else
