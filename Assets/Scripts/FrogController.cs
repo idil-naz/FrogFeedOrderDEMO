@@ -84,11 +84,48 @@ public class FrogController : MonoBehaviour
 
         while (isMoving)
         {
+            NodesController currentNode = frogParentNode.GetComponent<NodesController>();
             NodesController nextNode = getNextNode(currentDirection);
-            Debug.Log(nextNode.name);
+
+            Debug.Log("current node: " + currentNode.name);
+
+            if(nextNode.getCellOnTop().GetComponent<CellController>().cellColor == frogParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
+            {
+                Debug.Log("top cell colors match..." + "next node in path: " + nextNode.name);
+
+                currentNode = nextNode;
+                GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
+
+                Debug.Log("new current node: " + currentNode.name);
+
+
+                if (objectOnNextCell.CompareTag("Grape"))
+                {
+                    Debug.Log("object type on the next cell is a grape..collecting grape");
+                    
+                }
+                if (objectOnNextCell.CompareTag("Arrow"))
+                {
+                    Debug.Log("object type on the next cell is an arrow..changing direction");
+
+                }
+
+
+
+            }
+            else
+            {
+                Debug.Log("color of the next cell does not match the color of the current cell. cannot form path. retracting...");
+            }
+
+
+
+
+
             isMoving = false;
             yield return new WaitForSeconds(0.05f);
         }
+
         //Move in the direction of the Frog's direction.
         //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
         //check the HOUSED OBJECT of the TOP CELL.
