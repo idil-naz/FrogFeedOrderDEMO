@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static ArrowController;
 using static CellController;
@@ -87,52 +88,61 @@ void Update()
 
         while (isMoving)
         {
-            NodesController nextNode = getNextNode(currentDirection);
-            Debug.Log("current node: " + currentNode.name);
-            Debug.Log("next node: " + nextNode.name);
-            Debug.Log("current direction: " + currentDirection);
-
-            if(nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
+            if(getNextNode(currentDirection) != null)
             {
-                Debug.Log("top cell colors match..." + "next node in path: " + nextNode.name);
+                NodesController nextNode = getNextNode(currentDirection);
+                Debug.Log("current node: " + currentNode.name);
+                Debug.Log("next node: " + nextNode.name);
+                Debug.Log("current direction: " + currentDirection);
 
-                currentNode = nextNode;
-                GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
-
-                Debug.Log("new current node: " + currentNode.name);
-
-
-                if (objectOnNextCell.CompareTag("Grape"))
+                if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
                 {
-                    Debug.Log("object type on the next cell is a grape..collecting grape");
-                    
+                    Debug.Log("top cell colors match..." + "next node in path: " + nextNode.name);
+
+                    currentNode = nextNode;
+                    GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
+
+                    Debug.Log("new current node: " + currentNode.name);
+
+
+                    if (objectOnNextCell.CompareTag("Grape"))
+                    {
+                        Debug.Log("object type on the next cell is a grape..collecting grape");
+
+                    }
+                    if (objectOnNextCell.CompareTag("Arrow"))
+                    {
+                        Debug.Log("object type on the next cell is an arrow..changing direction");
+                        currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
+                        Debug.Log("current direction: " + currentDirection);
+
+                    }
+
                 }
-                if (objectOnNextCell.CompareTag("Arrow"))
+                else
                 {
-                    Debug.Log("object type on the next cell is an arrow..changing direction");
-                    currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
-                    Debug.Log("current direction: " + currentDirection);
-
+                    Debug.Log("color of the next cell does not match the color of the current cell. cannot form path. retracting...");
+                    currentDirection = (Direction)frogDirection;
+                    currentNode = frogParentNode.GetComponent<NodesController>();
+                    isMoving = false;
+                    break;
+                    //current node goes back to being the frog's node.
                 }
 
+                isMoving = false;
+                yield return new WaitForSeconds(3f);
+                yield return StartCoroutine(StartPathing());
             }
             else
             {
-                Debug.Log("color of the next cell does not match the color of the current cell. cannot form path. retracting...");
+                Debug.Log("No node found at target direction. You have hit a wall. Collecting berries....");
+                //Start collecting berries
                 isMoving = false;
                 break;
-                //current node goes back to being the frog's node.
             }
-
-
-
-
-
-            isMoving = false;
-            yield return new WaitForSeconds(3f);
-            yield return StartCoroutine(StartPathing());
+            
+            
         }
-
         //Move in the direction of the Frog's direction.
         //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
         //check the HOUSED OBJECT of the TOP CELL.
@@ -141,44 +151,18 @@ void Update()
         //IF the housed object in an arrow, collect it and move to the next NODE in the direction of the arrow. Check the TOP CELL of that NODE.
 
         //Continue with the same logic.
-
-       
     }
 
     NodesController getNextNode(Direction direction)
     {
-        switch (direction)
-        {
-            case Direction.Up:
-                return currentNode.GetComponent<NodesController>().frontNode;
-            case Direction.Down:
-                return currentNode.GetComponent<NodesController>().backNode;
-            case Direction.Left:
-                return currentNode.GetComponent<NodesController>().leftNode;
-            case Direction.Right:
-                return currentNode.GetComponent<NodesController>().rightNode;
-            default:
-                return null;
-        }
-        
+        if (direction == Direction.Up && currentNode.frontNode != null) return currentNode.GetComponent<NodesController>().frontNode;
+
+        else if (direction == Direction.Down && currentNode.backNode != null) return currentNode.GetComponent<NodesController>().backNode;
+
+        else if (direction == Direction.Left && currentNode.leftNode != null) return currentNode.GetComponent<NodesController>().leftNode;
+
+        else if (direction == Direction.Right && currentNode.rightNode != null) return currentNode.GetComponent<NodesController>().rightNode;
+
+        else return null;
     }
-
-    /*NodesController getNextNode(FrogDirection direction)
-    {
-        switch (direction)
-        {
-            case FrogDirection.Up:
-                return frogParentNode.GetComponent<NodesController>().frontNode;
-            case FrogDirection.Down:
-                return frogParentNode.GetComponent<NodesController>().backNode;
-            case FrogDirection.Left:
-                return frogParentNode.GetComponent<NodesController>().leftNode;
-            case FrogDirection.Right:
-                return frogParentNode.GetComponent<NodesController>().rightNode;
-            default:
-                return null;
-        }
-
-    }*/
-
 }
