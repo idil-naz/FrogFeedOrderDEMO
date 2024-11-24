@@ -2839,7 +2839,6 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3, y: 0.25, z: 0}
-  - {x: 10, y: 0.25, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -6577,7 +6576,6 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3, y: 0.25, z: 0}
-  - {x: 10, y: 0.25, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -7312,7 +7310,6 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3, y: 0.25, z: 0}
-  - {x: -2, y: 0.25, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

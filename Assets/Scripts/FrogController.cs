@@ -84,6 +84,7 @@ public class FrogController : MonoBehaviour
         {
             StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
             StartCoroutine(StartPathing());
+            gameObject.GetComponent<Collider>().enabled = false;
         }
 
     }
@@ -136,17 +137,19 @@ public class FrogController : MonoBehaviour
                 }
 
                 isMoving = false;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1f);
                 yield return StartCoroutine(StartPathing());
             }
             else
             {
                 Debug.Log("No node found at target direction. You have hit a wall. Collecting berries....");
                 //Start collecting berries
+                gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
                 break;
             }
             
+            //gameObject.GetComponent<Collider>().enabled = true;
             
         }
         //Move in the direction of the Frog's direction.
