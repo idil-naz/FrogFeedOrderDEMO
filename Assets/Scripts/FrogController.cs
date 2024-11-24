@@ -19,10 +19,8 @@ public class FrogController : MonoBehaviour
     }
     public FrogDirection frogDirection;
 
-    /*
-     FOR PATHING
-
-     */
+    
+    //FOR PATHING
     public NodesController currentNode;
     public enum Direction
     {
@@ -34,6 +32,10 @@ public class FrogController : MonoBehaviour
     public Direction currentDirection;
 
     public bool isMoving = false;
+
+
+    //FROG TOUNGE
+    public LineRenderer frogTounge;
 
     // Start is called before the first frame update
     void Start()
@@ -59,14 +61,17 @@ public class FrogController : MonoBehaviour
                 break;
         }
 
+        //PATHING
         currentDirection = (Direction)frogDirection;
         frogParentNode = gameObject.transform.parent.transform.parent.gameObject;
         currentNode = frogParentNode.GetComponent<NodesController>();
 
+       
+
     }
 
-// Update is called once per frame
-void Update()
+    // Update is called once per frame
+    void Update()
     {
 
         
@@ -77,6 +82,7 @@ void Update()
         Debug.Log("FrogClicked");
         if (!isMoving)
         {
+            StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
             StartCoroutine(StartPathing());
         }
 
