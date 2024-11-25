@@ -21,6 +21,8 @@ public class FrogController : MonoBehaviour
     
     //PATHING
     public NodesController currentNode;
+    public List<GameObject> pathNodes;
+
     public enum Direction
     {
         Up = 0,
@@ -64,6 +66,8 @@ public class FrogController : MonoBehaviour
         currentDirection = (Direction)frogDirection;
         frogParentNode = gameObject.transform.parent.gameObject.GetComponent<CellController>().cellParentNode;
         currentNode = frogParentNode.GetComponent<NodesController>();
+        pathNodes.Add(frogParentNode);
+
     }
 
     private void OnMouseDown()
@@ -86,38 +90,36 @@ public class FrogController : MonoBehaviour
             if(getNextNode(currentDirection) != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
-                Debug.Log("current node: " + currentNode.name);
-                Debug.Log("next node: " + nextNode.name);
-                Debug.Log("current direction: " + currentDirection);
+                Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
 
                 if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
                 {
-                    Debug.Log("top cell colors match..." + "next node in path: " + nextNode.name);
+                    Debug.Log("TOP CELL COLORS MATCH. NEXT NODE IN PATH: " + nextNode.name);
                     currentNode = nextNode;
 
                     GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
 
-                    Debug.Log("new current node: " + currentNode.name);
+                    Debug.Log("NEW CURRENT NODE: " + currentNode.name);
 
                     //COROUTINE CALL
                     StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
-                    frogTounge.GetComponent<FrogToungeScript>().pathNodes.Add(currentNode.gameObject);
+                    pathNodes.Add(currentNode.gameObject);
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
-                        Debug.Log("object type on the next cell is a grape..collecting grape");
+                        Debug.Log("[COLLECTING GRAPE]");
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
                     {
-                        Debug.Log("object type on the next cell is an arrow..changing direction");
+                        Debug.Log("CHANGING DIRECTION");
                         currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
-                        Debug.Log("current direction: " + currentDirection);
+                        Debug.Log("NEW CURRENT DIRECTION: " + currentDirection);
                     }
 
                 }
                 else
                 {
-                    Debug.Log("color of the next cell does not match the color of the current cell. cannot form path. retracting...");
+                    Debug.Log("TOP CELL COLORS DO NOT MATCH. RETRACTING");
                     currentDirection = (Direction)frogDirection;
                     currentNode = frogParentNode.GetComponent<NodesController>();
                     isMoving = false;
@@ -131,8 +133,14 @@ public class FrogController : MonoBehaviour
             }
             else
             {
-                Debug.Log("No node found at target direction. You have hit a wall. Collecting berries....");
+                
                 //Start collecting berries
+
+                yield return new WaitForSeconds(1f);
+                Debug.Log("END OF PATH. COLLECTING BERRIES");
+                StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().CollectBerries());
+
+
                 gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
                 break;
@@ -152,6 +160,7 @@ public class FrogController : MonoBehaviour
 
         //Continue with the same logic.
     }
+
 
     NodesController getNextNode(Direction direction)
     {

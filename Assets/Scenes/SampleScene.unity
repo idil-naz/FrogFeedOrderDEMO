@@ -1723,7 +1723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &170430522
 Transform:
   m_ObjectHideFlags: 0
@@ -2659,6 +2659,7 @@ MonoBehaviour:
   frogParentNode: {fileID: 2131753141}
   frogDirection: 3
   currentNode: {fileID: 0}
+  pathNodes: []
   currentDirection: 0
   pathingExecutionTime: 0.15
   frogTounge: {fileID: 859789953}
@@ -3289,7 +3290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentFrog: {fileID: 0}
-  pathNodes: []
 --- !u!120 &283845770
 LineRenderer:
   serializedVersion: 2
@@ -5536,7 +5536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &558668458
 Transform:
   m_ObjectHideFlags: 0
@@ -5570,6 +5570,7 @@ MonoBehaviour:
   frogParentNode: {fileID: 2131753141}
   frogDirection: 0
   currentNode: {fileID: 0}
+  pathNodes: []
   currentDirection: 0
   pathingExecutionTime: 0.25
   frogTounge: {fileID: 283845770}
@@ -7531,7 +7532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentFrog: {fileID: 0}
-  pathNodes: []
 --- !u!120 &782075571
 LineRenderer:
   serializedVersion: 2
@@ -8470,7 +8470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentFrog: {fileID: 0}
-  pathNodes: []
 --- !u!120 &859789953
 LineRenderer:
   serializedVersion: 2
@@ -15726,6 +15725,7 @@ GameObject:
   - component: {fileID: 1799392674}
   - component: {fileID: 1799392673}
   - component: {fileID: 1799392672}
+  - component: {fileID: 1799392675}
   m_Layer: 0
   m_Name: Grape (5)
   m_TagString: Grape
@@ -15812,6 +15812,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799392670}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &1799392675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799392670}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &1802565079
 GameObject:
   m_ObjectHideFlags: 0
@@ -16783,7 +16804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
   arrowParentNode: {fileID: 0}
-  direction: 0
+  direction: 3
 --- !u!23 &1916116305
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19162,7 +19183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &919132149305501821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19178,6 +19199,7 @@ MonoBehaviour:
   frogParentNode: {fileID: 2131753141}
   frogDirection: 0
   currentNode: {fileID: 0}
+  pathNodes: []
   currentDirection: 0
   pathingExecutionTime: 1
   frogTounge: {fileID: 782075571}
@@ -21012,7 +21034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7453353570619230337
 Transform:
   m_ObjectHideFlags: 0
