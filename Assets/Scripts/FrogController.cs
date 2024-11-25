@@ -62,7 +62,7 @@ public class FrogController : MonoBehaviour
 
         //PATHING
         currentDirection = (Direction)frogDirection;
-        frogParentNode = gameObject.transform.parent.transform.parent.gameObject;
+        frogParentNode = gameObject.transform.parent.gameObject.GetComponent<CellController>().cellParentNode;
         currentNode = frogParentNode.GetComponent<NodesController>();
     }
 
@@ -101,6 +101,7 @@ public class FrogController : MonoBehaviour
 
                     //COROUTINE CALL
                     StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+                    frogTounge.GetComponent<FrogToungeScript>().pathNodes.Add(currentNode.gameObject);
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {

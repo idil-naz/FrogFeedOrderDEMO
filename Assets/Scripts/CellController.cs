@@ -27,6 +27,12 @@ public class CellController : MonoBehaviour
     public GameObject housedGameObject;
     public GameObject cellParentNode;
 
+    private void Awake()
+    {
+        if (gameObject.transform.parent != null) cellParentNode = gameObject.transform.parent.gameObject;
+        if (gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +59,7 @@ public class CellController : MonoBehaviour
                 break;
         }
 
-        if (gameObject.transform.parent != null) cellParentNode = gameObject.transform.parent.gameObject;
-        if (gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
+        
 
 
         if (housedGameObject != null)

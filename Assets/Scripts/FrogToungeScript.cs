@@ -6,10 +6,12 @@ public class FrogToungeScript : MonoBehaviour
 {
     private float duration;
 
+    public FrogController parentFrog;
     private LineRenderer frogTounge;
     private List<Vector3> points;
 
-    public FrogController parentFrog;
+    public List<GameObject> pathNodes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,8 @@ public class FrogToungeScript : MonoBehaviour
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
         frogTounge.SetPosition(0, initPos);
+
+        pathNodes.Add(parentFrog.frogParentNode);
 
     }
     public IEnumerator ToungeAnim()
@@ -68,10 +72,11 @@ public class FrogToungeScript : MonoBehaviour
                     startingPos.y,
                     startingPos.z
                     );
-                break;
+                    break;
             default:
                 endingPos = startingPos;
                 break;
+
         }
 
 

@@ -16,5 +16,7 @@ public class BerryController : MonoBehaviour
         Renderer renderer = gameObject.GetComponent<MeshRenderer>();
         renderer.material = gameManager.berryMaterials[((int)gameObject.transform.parent.GetComponent<CellController>().cellColor)];
 
+        berryParentNode = gameObject.transform.parent.gameObject.GetComponent<CellController>().cellParentNode.gameObject;
+
     }
 }
