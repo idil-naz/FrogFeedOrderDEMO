@@ -22,6 +22,7 @@ public class FrogController : MonoBehaviour
     //PATHING
     public NodesController currentNode;
     public List<GameObject> pathNodes;
+    public List<GameObject> berriesOnPath;
 
     public enum Direction
     {
@@ -87,10 +88,14 @@ public class FrogController : MonoBehaviour
 
         while (isMoving)
         {
-            if(getNextNode(currentDirection) != null)
+            
+            if (getNextNode(currentDirection) != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
                 Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
+
+                //COROUTINE CALL
+                StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
 
                 if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
                 {
@@ -101,12 +106,12 @@ public class FrogController : MonoBehaviour
 
                     Debug.Log("NEW CURRENT NODE: " + currentNode.name);
 
-                    //COROUTINE CALL
-                    StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+                    
                     pathNodes.Add(currentNode.gameObject);
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
+                        berriesOnPath.Add(objectOnNextCell);
                         Debug.Log("[COLLECTING GRAPE]");
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
@@ -122,7 +127,10 @@ public class FrogController : MonoBehaviour
                     Debug.Log("TOP CELL COLORS DO NOT MATCH. RETRACTING");
                     currentDirection = (Direction)frogDirection;
                     currentNode = frogParentNode.GetComponent<NodesController>();
+
+                    gameObject.GetComponent<Collider>().enabled = true;
                     isMoving = false;
+                    currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                     break;
                     //current node goes back to being the frog's node.
                 }
@@ -138,11 +146,14 @@ public class FrogController : MonoBehaviour
 
                 yield return new WaitForSeconds(1f);
                 Debug.Log("END OF PATH. COLLECTING BERRIES");
-                StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().CollectBerries());
+                //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().CollectBerries());
 
 
                 gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
+                currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
+                currentDirection = (Direction)frogDirection;
+
                 break;
             }
             
@@ -159,6 +170,8 @@ public class FrogController : MonoBehaviour
         //IF the housed object in an arrow, collect it and move to the next NODE in the direction of the arrow. Check the TOP CELL of that NODE.
 
         //Continue with the same logic.
+
+       
     }
 
 

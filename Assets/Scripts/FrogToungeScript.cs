@@ -38,87 +38,6 @@ public class FrogToungeScript : MonoBehaviour
 
     }
 
-
-    public IEnumerator CollectBerries()
-    {
-        //Debug.Log("CollectBerries Called");
-
-        /*THE NEW LOGIC*/
-        //-each nodes in the path have a certain distance to the first element in the list in terms of number of nodes(i.e the third node is 2 nodes away rom the first node)
-        //- for each node in the path list, a loop will iterate for the distance between nodes, in each iteration, the housed object will move one node closer to the first node.
-        //- when all the housed objects are on the first node, the function terminates
-
-        for (int i = 1; i < parentFrog.pathNodes.Count; i++)
-        {
-            GameObject currentCollectNode = parentFrog.pathNodes[i];
-            GameObject targetCollectNode = parentFrog.pathNodes[0];
-
-            GameObject currentBerry = currentCollectNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().housedGameObject;
-
-            //Debug.Log(parentFrog.pathNodes[i]);
-
-            if (currentBerry.CompareTag("Grape"))
-            {
-                
-                int distanceToFirstNode = i;
-                //Debug.Log("Distance of " + currentBerry.name + " to the first node: " + distanceToFirstNode);
-
-                //Debug.Log("NEIGHBORS INFO");
-                //Debug.Log("Current collection node: " + currentCollectNode);
-                //Debug.Log("Current collection node's target: " + targetCollectNode);
-                //Debug.Log("Left of this node: " + currentCollectNode.GetComponent<NodesController>().leftNode);
-                //Debug.Log("Right of this node: " + currentCollectNode.GetComponent<NodesController>().rightNode);
-                //Debug.Log("Front of this node: " + currentCollectNode.GetComponent<NodesController>().frontNode);
-                //Debug.Log("Back of this node: " + currentCollectNode.GetComponent<NodesController>().backNode);
-
-                for (int j = 0; j < distanceToFirstNode; j++)
-                {
-                    bool isMoved = false;
-
-                    var frontNode = currentCollectNode.GetComponent<NodesController>().frontNode;
-                    if (frontNode != null && frontNode.gameObject == parentFrog.pathNodes[i-1])
-                    {
-                        Debug.Log("Move Up");
-                        currentBerry.GetComponent<BerryController>().MoveUp();
-                    }
-
-                    var backNode = currentCollectNode.GetComponent<NodesController>().backNode;
-                    if (backNode != null && backNode.gameObject == parentFrog.pathNodes[i - 1])
-                    {
-                        Debug.Log("Move Down");
-                        currentBerry.GetComponent<BerryController>().MoveDown();
-                    }
-
-                    var leftNode = currentCollectNode.GetComponent<NodesController>().leftNode;
-                    if (leftNode != null && leftNode.gameObject == parentFrog.pathNodes[i - 1])
-                    {
-                        Debug.Log("Move Down");
-                        currentBerry.GetComponent<BerryController>().MoveLeft();
-                    }
-
-                    var rightNode = currentCollectNode.GetComponent<NodesController>().rightNode;
-                    if (rightNode != null && rightNode.gameObject == parentFrog.pathNodes[i - 1])
-                    {
-                        Debug.Log("Move Down");
-                        currentBerry.GetComponent<BerryController>().MoveRight();
-                    }
-
-                    if(isMoved)
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                    }
-                    isMoved = false;
-
-                }
-
-            }
-           
-
-        }
-        Debug.Log("COLLECTION COMPLETE");
-        yield return null;
-    }
-
     public IEnumerator ToungeAnim()
     {
         Vector3 startingPos = points[points.Count - 1];
@@ -163,9 +82,7 @@ public class FrogToungeScript : MonoBehaviour
 
         }
 
-
         points.Add(endingPos);
-
         frogTounge.positionCount = points.Count;
 
         float lineSegmentDuration = duration;
@@ -180,8 +97,86 @@ public class FrogToungeScript : MonoBehaviour
 
             yield return null;
         }
-    }
-    
 
+        yield return new WaitForSeconds(2f);
+
+        startTime = Time.time;
+        startingPos = points[points.Count - 1];
+        endingPos = points[points.Count - 2];
+
+        float retractionTime = duration;
+        float elapsedTime = 0f;
+        bool pointRemoved = false;
+
+        while (elapsedTime < retractionTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime/retractionTime);
+
+            Vector3 pos = Vector3.Lerp(startingPos, endingPos, t);
+
+            frogTounge.SetPosition(points.Count - 1, pos);
+
+
+            CollectBerries(pos);
+
+            if (!pointRemoved && t >= 1f)
+            {
+                points.RemoveAt(points.Count - 1);
+                frogTounge.positionCount = points.Count;
+
+                pointRemoved = true;
+            }
+
+            yield return null;
+
+        }
+
+        frogTounge.SetPosition(points.Count - 1, endingPos);
+
+        yield return new WaitForSeconds(1.5f);
+        parentFrog.pathNodes.Clear();
+        parentFrog.berriesOnPath.Clear();
+
+    }
+
+    public void CollectBerries(Vector3 tounguePos)
+    {
+
+        float collectionRadar = 0.5f;
+        float spacing = 0.25f;
+
+        Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
+
+        List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
+        sortedBerries.Sort ((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
+
+        Vector3 prevBerryPos = tounguePos; 
+
+        foreach (Collider col in sortedBerries)
+        {
+            if (col.CompareTag("Grape"))
+            {
+                Vector3 berryPosition = col.transform.position;
+                Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 0.25f);
+
+                float distance = Vector3.Distance(prevBerryPos, targetPosition);
+
+                //if (distance < spacing)
+                //{
+                    Vector3 direction = (targetPosition - prevBerryPos).normalized;
+                    targetPosition = prevBerryPos + direction * spacing;
+                //}
+
+                col.transform.position = Vector3.Lerp(berryPosition, targetPosition, 0.25f);
+                prevBerryPos = col.transform.position;
+                
+                 //float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
+                 //col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t);
+            }
+        }
+
+
+    }
 
 }

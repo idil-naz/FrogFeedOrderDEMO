@@ -25,35 +25,48 @@ public class BerryController : MonoBehaviour
     public void MoveLeft()
     {
         //-1 on the x axis
-
-        float targetx = berryParentNode.GetComponent<NodesController>().leftNode.transform.position.x;
-        //berryParentNode = null;
-        gameObject.LeanMoveX(targetx, 0.5f);
-        //berryParentNode = berryParentNode.GetComponent<NodesController>().leftNode.gameObject;
+        if (berryParentNode.GetComponent<NodesController>().leftNode != null)
+        {
+            float targetx = berryParentNode.GetComponent<NodesController>().leftNode.transform.position.x;
+            gameObject.LeanMoveX(targetx, 0.5f);
+            //berryParentNode = berryParentNode.GetComponent<NodesController>().leftNode.gameObject;
+            //gameObject.transform.parent = berryParentNode.GetComponent<NodesController>().cellOnTop.transform;
+        }
     }
 
     public void MoveRight()
     {
         //+1 on the x axis
-        float targetx = berryParentNode.GetComponent<NodesController>().rightNode.transform.position.x;
-        gameObject.LeanMoveX(targetx, 0.5f);
-        //berryParentNode = berryParentNode.GetComponent<NodesController>().rightNode.gameObject;
+        if (berryParentNode.GetComponent<NodesController>().rightNode != null)
+        {
+            float targetx = berryParentNode.GetComponent<NodesController>().rightNode.transform.position.x;
+            gameObject.LeanMoveX(targetx, 0.5f);
+            //berryParentNode = berryParentNode.GetComponent<NodesController>().rightNode.gameObject;
+            //gameObject.transform.parent = berryParentNode.GetComponent<NodesController>().cellOnTop.transform;
+        }
     }
 
     public void MoveUp()
     {
         //+1 on the z axis
-        float targetz = berryParentNode.GetComponent<NodesController>().frontNode.transform.position.z;
-        gameObject.LeanMoveZ(targetz, 0.5f);
-        //berryParentNode = berryParentNode.GetComponent<NodesController>().frontNode.gameObject;
+        if(berryParentNode.GetComponent<NodesController>().frontNode != null)
+        {
+            float targetz = berryParentNode.GetComponent<NodesController>().frontNode.transform.position.z;
+            gameObject.LeanMoveZ(targetz, 0.5f);
+            //berryParentNode = berryParentNode.GetComponent<NodesController>().frontNode.gameObject;
+            //gameObject.transform.parent = berryParentNode.GetComponent<NodesController>().cellOnTop.transform;
+        }
     }
 
     public void MoveDown()
     {
         //-1 on the z axis
-        float targetz = berryParentNode.GetComponent<NodesController>().backNode.transform.position.z;
-        gameObject.LeanMoveZ(targetz, 0.5f);
-        //berryParentNode = berryParentNode.GetComponent<NodesController>().backNode.gameObject;
+        if(berryParentNode.GetComponent<NodesController>().backNode != null)
+        {
+            float targetz = berryParentNode.GetComponent<NodesController>().backNode.transform.position.z;
+            gameObject.LeanMoveZ(targetz, 0.5f);
+            //berryParentNode = berryParentNode.GetComponent<NodesController>().backNode.gameObject;
+            //gameObject.transform.parent = berryParentNode.GetComponent<NodesController>().cellOnTop.transform;
+        }
     }
-
 }

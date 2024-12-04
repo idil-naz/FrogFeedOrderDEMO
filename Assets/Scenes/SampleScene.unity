@@ -2661,7 +2661,7 @@ MonoBehaviour:
   currentNode: {fileID: 0}
   pathNodes: []
   currentDirection: 0
-  pathingExecutionTime: 0.15
+  pathingExecutionTime: 0.25
   frogTounge: {fileID: 859789953}
 --- !u!65 &239020172
 BoxCollider:
@@ -10048,6 +10048,7 @@ GameObject:
   - component: {fileID: 1072015430}
   - component: {fileID: 1072015429}
   - component: {fileID: 1072015428}
+  - component: {fileID: 1072015431}
   m_Layer: 0
   m_Name: Grape (5)
   m_TagString: Grape
@@ -10134,6 +10135,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072015426}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &1072015431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072015426}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &1084422658
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,6 +14809,7 @@ GameObject:
   - component: {fileID: 1641356166}
   - component: {fileID: 1641356165}
   - component: {fileID: 1641356164}
+  - component: {fileID: 1641356167}
   m_Layer: 0
   m_Name: Grape (3)
   m_TagString: Grape
@@ -14873,6 +14896,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641356162}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &1641356167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641356162}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &1641787066
 GameObject:
   m_ObjectHideFlags: 0
@@ -15222,6 +15266,7 @@ GameObject:
   - component: {fileID: 1702902839}
   - component: {fileID: 1702902838}
   - component: {fileID: 1702902837}
+  - component: {fileID: 1702902840}
   m_Layer: 0
   m_Name: Grape (5)
   m_TagString: Grape
@@ -15308,6 +15353,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702902835}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &1702902840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702902835}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &1719523615
 GameObject:
   m_ObjectHideFlags: 0
@@ -15595,6 +15661,7 @@ GameObject:
   - component: {fileID: 1751939139}
   - component: {fileID: 1751939138}
   - component: {fileID: 1751939137}
+  - component: {fileID: 1751939140}
   m_Layer: 0
   m_Name: Grape (4)
   m_TagString: Grape
@@ -15681,6 +15748,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751939135}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &1751939140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751939135}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &1793202152
 GameObject:
   m_ObjectHideFlags: 0
@@ -18607,6 +18695,7 @@ GameObject:
   - component: {fileID: 2125481919}
   - component: {fileID: 2125481918}
   - component: {fileID: 2125481917}
+  - component: {fileID: 2125481920}
   m_Layer: 0
   m_Name: Grape (5)
   m_TagString: Grape
@@ -18693,6 +18782,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125481915}
   m_Mesh: {fileID: 1354445856614592872, guid: 45751db46497f1345bdab47cdd607a76, type: 3}
+--- !u!65 &2125481920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125481915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.63336253, y: 0.5062599, z: 0.6215816}
+  m_Center: {x: -0.0001603663, y: 0.014140509, z: 0.055995464}
 --- !u!1 &2129571898
 GameObject:
   m_ObjectHideFlags: 0
