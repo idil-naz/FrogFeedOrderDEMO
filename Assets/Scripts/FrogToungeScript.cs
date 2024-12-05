@@ -168,13 +168,32 @@ public class FrogToungeScript : MonoBehaviour
                 float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
 
-
+                //LEAN TWEEN ANIMATIONS
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
                 {
 
                     LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine);
                 }
 
+                //LEAN TWEEN ANIMATIONS
+                if(col.transform.parent != null)
+                {
+                    GameObject berryParentCell = col.transform.parent.gameObject;
+                    col.transform.parent = null;
+                    LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack);
+
+                }
+
+            }
+            //LEAN TWEEN ANIMATIONS
+            if (col.CompareTag("Arrow"))
+            {
+                if(col.transform.parent != null)
+                {
+                    GameObject arrowParentCell = col.transform.parent.gameObject;
+                    LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack);
+                }
+                
             }
         }
     }

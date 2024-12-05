@@ -473,7 +473,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &51261691
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -998,7 +1000,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &98819120
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1361,7 +1365,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &133402650
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2227,7 +2233,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &187563670
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4185,7 +4193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &386211266
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6044,7 +6054,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &611594079
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6205,7 +6217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &621751920
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6351,7 +6365,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &633446601
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8324,7 +8340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &832563039
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9630,7 +9648,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &995068313
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9847,6 +9867,7 @@ GameObject:
   - component: {fileID: 1038005293}
   - component: {fileID: 1038005292}
   - component: {fileID: 1038005291}
+  - component: {fileID: 1038005294}
   m_Layer: 0
   m_Name: DirectionalArrow
   m_TagString: Arrow
@@ -9934,6 +9955,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038005289}
   m_Mesh: {fileID: 4300002, guid: d47ae0396110840289d47476d8289fbf, type: 3}
+--- !u!65 &1038005294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038005289}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4929626, y: 0.5542679, z: 2.9174054}
+  m_Center: {x: -0.007149876, y: -0.012838885, z: 0.0979525}
 --- !u!1 &1041952248
 GameObject:
   m_ObjectHideFlags: 0
@@ -10260,7 +10302,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1072015430
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10933,7 +10977,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1152848026
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11878,7 +11924,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1294579444
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12449,7 +12497,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1391847482
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13632,7 +13682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1513409106
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13896,7 +13948,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1536750600
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15090,7 +15144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1641356166
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15448,7 +15504,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1692941005
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15547,7 +15605,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1702902839
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15651,7 +15711,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1719523618
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15942,7 +16004,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1751939139
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16094,7 +16158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1799392674
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16973,7 +17039,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1889220299
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17161,6 +17229,7 @@ GameObject:
   - component: {fileID: 1916116306}
   - component: {fileID: 1916116305}
   - component: {fileID: 1916116304}
+  - component: {fileID: 1916116307}
   m_Layer: 0
   m_Name: DirectionalArrow (1)
   m_TagString: Arrow
@@ -17248,6 +17317,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916116302}
   m_Mesh: {fileID: 4300002, guid: d47ae0396110840289d47476d8289fbf, type: 3}
+--- !u!65 &1916116307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916116302}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4929626, y: 0.5542679, z: 2.9174054}
+  m_Center: {x: -0.007149876, y: -0.012838885, z: 0.0979525}
 --- !u!1 &1924660349
 GameObject:
   m_ObjectHideFlags: 0
@@ -17584,7 +17674,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &1969641422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18267,7 +18359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &2009763237
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19078,7 +19172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!33 &2125481919
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22209,7 +22305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
+  berryParentCell: {fileID: 0}
   berryParentNode: {fileID: 0}
+  isCollected: 0
 --- !u!4 &9099225401070706515
 Transform:
   m_ObjectHideFlags: 0
