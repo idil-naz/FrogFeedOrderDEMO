@@ -143,8 +143,8 @@ public class FrogToungeScript : MonoBehaviour
     public void CollectBerries(Vector3 tounguePos)
     {
         float collectionRadar = 0.5f;
-        float spacing = 0.5f;
-        float smooth = 0.25f;
+        float spacing = 1f;
+        float smooth = 0.15f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
@@ -158,16 +158,14 @@ public class FrogToungeScript : MonoBehaviour
             if (col.CompareTag("Grape"))
             {
                 Vector3 berryPosition = col.transform.position;
-                Vector3 direction = (prevBerryPos - berryPosition).normalized;
-                //Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 1.75f);
-                Vector3 targetPosition = prevBerryPos- direction * spacing;
-               
 
-                col.transform.position = Vector3.Lerp(berryPosition, targetPosition, smooth);
-                //prevBerryPos = targetPosition;
+                Vector3 direction = (prevBerryPos - berryPosition).normalized;
+                Vector3 targetPosition = prevBerryPos + direction * spacing;
+
+                //prevBerryPos = col.transform.position;
+                prevBerryPos = targetPosition;
 
                 float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
-                //float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
             }
         }
@@ -176,12 +174,10 @@ public class FrogToungeScript : MonoBehaviour
     }
 
 
-
     //public void CollectBerries(Vector3 tounguePos)
     //{
-
-    //    float collectionRadar = 0.75f;
-    //    float spacing = 0.8f;
+    //    float collectionRadar = 0.5f;
+    //    float spacing = 0.5f;
     //    float smooth = 0.25f;
 
     //    Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
@@ -196,25 +192,21 @@ public class FrogToungeScript : MonoBehaviour
     //        if (col.CompareTag("Grape"))
     //        {
     //            Vector3 berryPosition = col.transform.position;
-    //            Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 1.75f);
 
-    //            float distance = Vector3.Distance(prevBerryPos, targetPosition);
-
-    //            //Vector3 direction = (targetPosition - prevBerryPos).normalized;
     //            Vector3 direction = (prevBerryPos - berryPosition).normalized;
-    //            targetPosition = prevBerryPos - direction * spacing;
+    //            Vector3 targetPosition = prevBerryPos + direction * spacing;
 
-    //            col.transform.position = Vector3.Lerp(berryPosition, targetPosition, smooth);
+    //            //prevBerryPos = col.transform.position;
     //            prevBerryPos = targetPosition;
 
-    //            float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
-    //            col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t);
+    //            float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
+    //            col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
     //        }
     //    }
 
 
-    //}LAST WORKING POINT
-
+    //}
+    //LAST WORKING POINT
 
 
 }
