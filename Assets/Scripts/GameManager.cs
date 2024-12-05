@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,30 +17,63 @@ public class GameManager : MonoBehaviour
     public List<Material> berryMaterials;
 
 
+    public Button restartButton;
+
     private void Awake()
     {
+        
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        ReInitResButton();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ReInitResButton();
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void ReInitResButton()
+    {
+        if (restartButton == null)
+        {
+            GameObject buttonObj = GameObject.Find("RestartButton");
+            if (buttonObj != null)
+            {
+                restartButton = buttonObj.GetComponent<Button>();
+            }
+        }
+
+        if (restartButton != null)
+        {
+            restartButton.onClick.RemoveAllListeners();
+            restartButton.onClick.AddListener(RestartLevel);
+        }
     }
 }
