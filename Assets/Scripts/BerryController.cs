@@ -22,6 +22,7 @@ public class BerryController : MonoBehaviour
     }
 
 
+
     public void MoveLeft()
     {
         //-1 on the x axis

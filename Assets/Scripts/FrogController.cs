@@ -18,7 +18,7 @@ public class FrogController : MonoBehaviour
         Right = 3,
     }
     public FrogDirection frogDirection;
-    
+
     //PATHING
     public NodesController currentNode;
     public List<GameObject> pathNodes;
@@ -88,7 +88,7 @@ public class FrogController : MonoBehaviour
 
         while (isMoving)
         {
-            
+
             if (getNextNode(currentDirection) != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
@@ -106,13 +106,24 @@ public class FrogController : MonoBehaviour
 
                     //Debug.Log("NEW CURRENT NODE: " + currentNode.name);
 
-                    
+
                     pathNodes.Add(currentNode.gameObject);
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
                         berriesOnPath.Add(objectOnNextCell);
                         //Debug.Log("[COLLECTING GRAPE]");
+
+
+                        //LEAN TWEEN ANIMATIONS
+
+                        LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
+                                .setOnComplete(() =>
+                                {
+                                    LeanTween.scale(objectOnNextCell, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
+                                });
+
+
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
                     {
@@ -141,7 +152,7 @@ public class FrogController : MonoBehaviour
             }
             else
             {
-                
+
                 //Start collecting berries
 
                 yield return new WaitForSeconds(1f);
@@ -156,9 +167,9 @@ public class FrogController : MonoBehaviour
 
                 break;
             }
-            
+
             //gameObject.GetComponent<Collider>().enabled = true;
-            
+
         }
 
         /*THE LOGIC*/
@@ -171,7 +182,7 @@ public class FrogController : MonoBehaviour
 
         //Continue with the same logic.
 
-       
+
     }
 
 

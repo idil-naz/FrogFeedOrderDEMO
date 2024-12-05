@@ -117,7 +117,6 @@ public class FrogToungeScript : MonoBehaviour
 
             frogTounge.SetPosition(points.Count - 1, pos);
 
-
             CollectBerries(pos);
 
             if (!pointRemoved && t >= 1f)
@@ -144,7 +143,7 @@ public class FrogToungeScript : MonoBehaviour
     {
         float collectionRadar = 0.5f;
         float spacing = 1f;
-        float smooth = 0.15f;
+        float smooth = 0.06f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
@@ -160,25 +159,32 @@ public class FrogToungeScript : MonoBehaviour
                 Vector3 berryPosition = col.transform.position;
 
                 Vector3 direction = (prevBerryPos - berryPosition).normalized;
-                Vector3 targetPosition = prevBerryPos + direction * spacing;
+                Vector3 targetPosition = berryPosition + direction * spacing;
 
                 //prevBerryPos = col.transform.position;
                 prevBerryPos = targetPosition;
 
+
                 float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
+
+
+                if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
+                {
+
+                    LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine);
+                }
+
             }
         }
-
-
     }
 
 
     //public void CollectBerries(Vector3 tounguePos)
     //{
     //    float collectionRadar = 0.5f;
-    //    float spacing = 0.5f;
-    //    float smooth = 0.25f;
+    //    float spacing = 1f;
+    //    float smooth = 0.06f;
 
     //    Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
@@ -194,19 +200,25 @@ public class FrogToungeScript : MonoBehaviour
     //            Vector3 berryPosition = col.transform.position;
 
     //            Vector3 direction = (prevBerryPos - berryPosition).normalized;
-    //            Vector3 targetPosition = prevBerryPos + direction * spacing;
+    //            Vector3 targetPosition = berryPosition + direction * spacing;
 
     //            //prevBerryPos = col.transform.position;
     //            prevBerryPos = targetPosition;
 
+
     //            float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
     //            col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
+
+
+    //            if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
+    //            {
+
+    //                LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine);
+    //            }
+
     //        }
     //    }
-
-
     //}
-    //LAST WORKING POINT
 
 
 }
