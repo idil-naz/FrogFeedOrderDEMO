@@ -171,30 +171,42 @@ public class FrogToungeScript : MonoBehaviour
                 //LEAN TWEEN ANIMATIONS
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
                 {
-
-                    LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine);
+                    LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine).setOnComplete(() =>
+                    {
+                        Destroy(col.gameObject);
+                    });
                 }
 
                 //LEAN TWEEN ANIMATIONS
-                if(col.transform.parent != null)
+                if (col.transform.parent != null)
                 {
                     GameObject berryParentCell = col.transform.parent.gameObject;
                     col.transform.parent = null;
-                    LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack);
-
+                    LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+                    {
+                        Destroy(berryParentCell);
+                    });
                 }
 
             }
             //LEAN TWEEN ANIMATIONS
             if (col.CompareTag("Arrow"))
             {
-                if(col.transform.parent != null)
+                if (col.transform.parent != null)
                 {
                     GameObject arrowParentCell = col.transform.parent.gameObject;
-                    LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack);
+                    arrowParentCell.transform.parent = null;
+                    LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+                    {
+                        if (!LeanTween.isTweening(arrowParentCell.gameObject)){
+                            Destroy(arrowParentCell.gameObject);
+                        }
+                    });
                 }
-                
+
             }
+
+
         }
     }
 
