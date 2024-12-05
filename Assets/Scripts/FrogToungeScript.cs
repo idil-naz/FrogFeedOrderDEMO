@@ -142,41 +142,79 @@ public class FrogToungeScript : MonoBehaviour
 
     public void CollectBerries(Vector3 tounguePos)
     {
-
         float collectionRadar = 0.5f;
-        float spacing = 0.25f;
+        float spacing = 0.5f;
+        float smooth = 0.25f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
-        sortedBerries.Sort ((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
+        sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
 
-        Vector3 prevBerryPos = tounguePos; 
+        Vector3 prevBerryPos = tounguePos;
 
         foreach (Collider col in sortedBerries)
         {
             if (col.CompareTag("Grape"))
             {
                 Vector3 berryPosition = col.transform.position;
-                Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 0.25f);
+                Vector3 direction = (prevBerryPos - berryPosition).normalized;
+                //Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 1.75f);
+                Vector3 targetPosition = prevBerryPos- direction * spacing;
+               
 
-                float distance = Vector3.Distance(prevBerryPos, targetPosition);
+                col.transform.position = Vector3.Lerp(berryPosition, targetPosition, smooth);
+                //prevBerryPos = targetPosition;
 
-                //if (distance < spacing)
-                //{
-                    Vector3 direction = (targetPosition - prevBerryPos).normalized;
-                    targetPosition = prevBerryPos + direction * spacing;
-                //}
-
-                col.transform.position = Vector3.Lerp(berryPosition, targetPosition, 0.25f);
-                prevBerryPos = col.transform.position;
-                
-                 //float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
-                 //col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t);
+                float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
+                //float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
+                col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
             }
         }
 
 
     }
+
+
+
+    //public void CollectBerries(Vector3 tounguePos)
+    //{
+
+    //    float collectionRadar = 0.75f;
+    //    float spacing = 0.8f;
+    //    float smooth = 0.25f;
+
+    //    Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
+
+    //    List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
+    //    sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
+
+    //    Vector3 prevBerryPos = tounguePos;
+
+    //    foreach (Collider col in sortedBerries)
+    //    {
+    //        if (col.CompareTag("Grape"))
+    //        {
+    //            Vector3 berryPosition = col.transform.position;
+    //            Vector3 targetPosition = Vector3.Lerp(berryPosition, tounguePos, 1.75f);
+
+    //            float distance = Vector3.Distance(prevBerryPos, targetPosition);
+
+    //            //Vector3 direction = (targetPosition - prevBerryPos).normalized;
+    //            Vector3 direction = (prevBerryPos - berryPosition).normalized;
+    //            targetPosition = prevBerryPos - direction * spacing;
+
+    //            col.transform.position = Vector3.Lerp(berryPosition, targetPosition, smooth);
+    //            prevBerryPos = targetPosition;
+
+    //            float t = Mathf.Clamp01((tounguePos - col.transform.position).magnitude / collectionRadar);
+    //            col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t);
+    //        }
+    //    }
+
+
+    //}LAST WORKING POINT
+
+
 
 }
