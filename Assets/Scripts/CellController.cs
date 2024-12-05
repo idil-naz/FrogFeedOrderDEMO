@@ -59,19 +59,9 @@ public class CellController : MonoBehaviour
                 break;
         }
 
-        
-
-
         if (housedGameObject != null)
         {
-            if (cellParentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
-            {
-                housedGameObject.SetActive(false);
-            }
-            else
-            {
-                housedGameObject.SetActive(true);
-            }
+            checkSelf();
 
             if (housedElementType == HousedElementType.Frog)
             {
@@ -85,6 +75,18 @@ public class CellController : MonoBehaviour
             {
                 housedGameObject.GetComponent<ArrowController>().arrowParentNode = cellParentNode;
             }
+        }
+    }
+
+    public void checkSelf()
+    {
+        if (cellParentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
+        {
+            housedGameObject.SetActive(false);
+        }
+        else
+        {
+            housedGameObject.SetActive(true);
         }
     }
 }

@@ -56,4 +56,10 @@ public class NodesController : MonoBehaviour
 
         }
     }
+
+    public void updateCellOnTop()
+    {
+        cells.Remove(cells[cells.Count - 1]);
+        cellOnTop = cells[cells.Count - 1];
+    }
 }

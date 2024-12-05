@@ -168,7 +168,7 @@ public class FrogToungeScript : MonoBehaviour
                 float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
 
-                //LEAN TWEEN ANIMATIONS
+                //LEAN TWEEN ANIMATIONS WHEN BERRIES REACH FROG
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
                 {
                     LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine).setOnComplete(() =>
@@ -177,14 +177,21 @@ public class FrogToungeScript : MonoBehaviour
                     });
                 }
 
-                //LEAN TWEEN ANIMATIONS
+                //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
                 if (col.transform.parent != null)
                 {
                     GameObject berryParentCell = col.transform.parent.gameObject;
+                    GameObject berryParentNode = berryParentCell.GetComponent<CellController>().cellParentNode;
                     col.transform.parent = null;
+
                     LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
                     {
-                        Destroy(berryParentCell);
+                        if (!LeanTween.isTweening(berryParentCell.gameObject))
+                        {
+                            berryParentNode.GetComponent<NodesController>().updateCellOnTop();
+                            berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                            Destroy(berryParentCell.gameObject);
+                        }
                     });
                 }
 
@@ -195,10 +202,15 @@ public class FrogToungeScript : MonoBehaviour
                 if (col.transform.parent != null)
                 {
                     GameObject arrowParentCell = col.transform.parent.gameObject;
+                    GameObject arrowParentNode = arrowParentCell.GetComponent<CellController>().cellParentNode;
                     arrowParentCell.transform.parent = null;
+
                     LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
                     {
                         if (!LeanTween.isTweening(arrowParentCell.gameObject)){
+
+                            arrowParentNode.GetComponent<NodesController>().updateCellOnTop();
+                            arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
                             Destroy(arrowParentCell.gameObject);
                         }
                     });
