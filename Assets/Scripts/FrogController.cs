@@ -10,6 +10,7 @@ public class FrogController : MonoBehaviour
     private GameManager gameManager;
 
     public GameObject frogParentNode;
+    public GameObject frogParentCell;
     public enum FrogDirection
     {
         Up = 0,
@@ -67,7 +68,8 @@ public class FrogController : MonoBehaviour
 
         //PATHING
         currentDirection = (Direction)frogDirection;
-        frogParentNode = gameObject.transform.parent.gameObject.GetComponent<CellController>().cellParentNode;
+        frogParentCell = gameObject.transform.parent.gameObject;
+        frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode;
         currentNode = frogParentNode.GetComponent<NodesController>();
         pathNodes.Add(frogParentNode);
 
@@ -149,13 +151,14 @@ public class FrogController : MonoBehaviour
                     currentDirection = (Direction)frogDirection;
                     currentNode = frogParentNode.GetComponent<NodesController>();
 
-                    gameObject.GetComponent<Collider>().enabled = true;
+                    this.gameObject.GetComponent<Collider>().enabled = true;
                     isMoving = false;
                     currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                     break;
                     //current node goes back to being the frog's node.
                 }
 
+               
                 isMoving = false;
                 yield return new WaitForSeconds(pathingExecutionTime);
                 yield return StartCoroutine(StartPathing());
@@ -167,14 +170,12 @@ public class FrogController : MonoBehaviour
 
                 yield return new WaitForSeconds(1f);
                 //Debug.Log("END OF PATH. COLLECTING BERRIES");
-                //StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().CollectBerries());
 
 
                 gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
                 currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                 currentDirection = (Direction)frogDirection;
-
 
                 break;
             }

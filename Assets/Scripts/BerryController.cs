@@ -25,9 +25,4 @@ public class BerryController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("berry collider entered");
-        //berryParentCell.gameObject.SetActive(false);
-    }
 }

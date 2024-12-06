@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -33,9 +34,6 @@ public class FrogToungeScript : MonoBehaviour
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
         frogTounge.SetPosition(0, initPos);
-
-        //Collider toungeCollider = frogTounge.GetComponent<Collider>();
-        //toungeCollider.transform.localPosition = points[0];
 
     }
 
@@ -148,6 +146,8 @@ public class FrogToungeScript : MonoBehaviour
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
+        
+
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
         sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
 
@@ -155,8 +155,9 @@ public class FrogToungeScript : MonoBehaviour
 
         foreach (Collider col in sortedBerries)
         {
-            if (col.CompareTag("Grape"))
+            if (col.CompareTag("Grape") && parentFrog.berriesOnPath.Contains(col.gameObject))
             {
+                //col.GetComponent<BerryController>().berryParentCell.GetComponent<CellController>().cellColor == parentFrog.GetComponent<FrogController>().frogParentCell.GetComponent<CellController>().cellColor
                 Vector3 berryPosition = col.transform.position;
 
                 Vector3 direction = (prevBerryPos - berryPosition).normalized;
@@ -239,46 +240,6 @@ public class FrogToungeScript : MonoBehaviour
         }
     }
 
-
-    //public void CollectBerries(Vector3 tounguePos)
-    //{
-    //    float collectionRadar = 0.5f;
-    //    float spacing = 1f;
-    //    float smooth = 0.06f;
-
-    //    Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
-
-    //    List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
-    //    sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
-
-    //    Vector3 prevBerryPos = tounguePos;
-
-    //    foreach (Collider col in sortedBerries)
-    //    {
-    //        if (col.CompareTag("Grape"))
-    //        {
-    //            Vector3 berryPosition = col.transform.position;
-
-    //            Vector3 direction = (prevBerryPos - berryPosition).normalized;
-    //            Vector3 targetPosition = berryPosition + direction * spacing;
-
-    //            //prevBerryPos = col.transform.position;
-    //            prevBerryPos = targetPosition;
-
-
-    //            float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
-    //            col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
-
-
-    //            if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
-    //            {
-
-    //                LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine);
-    //            }
-
-    //        }
-    //    }
-    //}
 
 
 }

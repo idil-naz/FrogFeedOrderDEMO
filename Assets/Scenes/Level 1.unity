@@ -1363,7 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1165659949}
-  cellColor: 0
+  cellColor: 2
   housedElementType: 1
   housedGameObject: {fileID: 0}
   cellParentNode: {fileID: 0}
@@ -3960,6 +3960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frogParentNode: {fileID: 2131753141}
+  frogParentCell: {fileID: 0}
   frogDirection: 3
   currentNode: {fileID: 0}
   pathNodes: []
@@ -18127,6 +18128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frogParentNode: {fileID: 2131753141}
+  frogParentCell: {fileID: 0}
   frogDirection: 3
   currentNode: {fileID: 0}
   pathNodes: []
@@ -31147,6 +31149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frogParentNode: {fileID: 2131753141}
+  frogParentCell: {fileID: 0}
   frogDirection: 3
   currentNode: {fileID: 0}
   pathNodes: []
