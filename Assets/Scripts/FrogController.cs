@@ -81,7 +81,7 @@ public class FrogController : MonoBehaviour
         if (!isMoving)
         {
             StartCoroutine(StartPathing());
-            gameObject.GetComponent<Collider>().enabled = false;
+            //gameObject.GetComponent<Collider>().enabled = false;
         }
 
     }
@@ -98,7 +98,7 @@ public class FrogController : MonoBehaviour
     IEnumerator StartPathing()
     {
         isMoving = true;
-
+        gameObject.GetComponent<Collider>().enabled = false;
         while (isMoving)
         {
 
@@ -165,12 +165,9 @@ public class FrogController : MonoBehaviour
             }
             else
             {
-
                 //Start collecting berries
-
                 yield return new WaitForSeconds(1f);
                 //Debug.Log("END OF PATH. COLLECTING BERRIES");
-
 
                 gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
@@ -180,7 +177,7 @@ public class FrogController : MonoBehaviour
                 break;
             }
 
-            //gameObject.GetComponent<Collider>().enabled = true;
+            
 
         }
 
@@ -194,7 +191,8 @@ public class FrogController : MonoBehaviour
 
         //Continue with the same logic.
 
-
+        gameObject.GetComponent<Collider>().enabled = true;
+        isMoving = false;
     }
 
 

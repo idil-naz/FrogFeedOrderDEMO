@@ -145,7 +145,7 @@ public class FrogToungeScript : MonoBehaviour
         float smooth = 0.06f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
-
+        //parentFrog.GetComponent<Collider>().enabled = false;
         
 
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
