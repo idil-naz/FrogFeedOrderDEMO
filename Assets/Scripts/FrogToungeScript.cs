@@ -11,6 +11,7 @@ public class FrogToungeScript : MonoBehaviour
     private LineRenderer frogTounge;
     private List<Vector3> points;
 
+    public bool berryCollectionCompleted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -171,11 +172,15 @@ public class FrogToungeScript : MonoBehaviour
                 //LEAN TWEEN ANIMATIONS WHEN BERRIES REACH FROG
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
                 {
-                    LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine).setOnComplete(() =>
+                    LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine)
+                    .setOnComplete(() =>
                     {
                         Destroy(col.gameObject);
+                        berryCollectionCompleted = true;
                     });
                 }
+
+
 
                 //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
                 if (col.transform.parent != null)
@@ -191,12 +196,13 @@ public class FrogToungeScript : MonoBehaviour
                             berryParentNode.GetComponent<NodesController>().updateCellOnTop();
                             berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
                             Destroy(berryParentCell.gameObject);
+
                         }
                     });
                 }
 
             }
-            //LEAN TWEEN ANIMATIONS
+            //LEAN TWEEN ANIMATIONS FOR ARROW CELLS
             if (col.CompareTag("Arrow"))
             {
                 if (col.transform.parent != null)

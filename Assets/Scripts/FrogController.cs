@@ -39,6 +39,8 @@ public class FrogController : MonoBehaviour
     //FROG TOUNGE
     public LineRenderer frogTounge;
 
+    private bool frogDestroyed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,15 @@ public class FrogController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (!frogDestroyed && frogTounge.GetComponent<FrogToungeScript>().berryCollectionCompleted)
+        {
+            frogDestroyed = true;
+            DestroyFrog();
+        }
+    }
+
     IEnumerator StartPathing()
     {
         isMoving = true;
@@ -116,7 +127,6 @@ public class FrogController : MonoBehaviour
 
 
                         //LEAN TWEEN ANIMATIONS
-
                         LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
                                 .setOnComplete(() =>
                                 {
@@ -165,6 +175,7 @@ public class FrogController : MonoBehaviour
                 currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                 currentDirection = (Direction)frogDirection;
 
+
                 break;
             }
 
@@ -198,4 +209,20 @@ public class FrogController : MonoBehaviour
 
         else return null;
     }
+
+
+    public void DestroyFrog()
+    {
+            gameObject.transform.parent.transform.parent = null;
+
+            LeanTween.scale(gameObject.transform.parent.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+            {
+                if (!LeanTween.isTweening(gameObject.transform.parent.gameObject.gameObject))
+                {
+                    frogParentNode.GetComponent<NodesController>().updateCellOnTop();
+                    frogParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                    Destroy(gameObject.transform.parent.transform.gameObject);
+                }
+            });
+        }
 }

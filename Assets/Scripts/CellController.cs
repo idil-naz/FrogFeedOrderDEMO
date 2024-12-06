@@ -87,6 +87,15 @@ public class CellController : MonoBehaviour
         else
         {
             housedGameObject.SetActive(true);
+
+            if (!LeanTween.isTweening(this.gameObject))
+            {
+                LeanTween.scale(this.gameObject, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce).setOnComplete(() =>
+                {
+                    LeanTween.scale(this.gameObject, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
+                });
+            }
+
         }
     }
 }
