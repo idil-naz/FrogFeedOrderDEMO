@@ -220,7 +220,12 @@ public class FrogController : MonoBehaviour
                 if (!LeanTween.isTweening(gameObject.transform.parent.gameObject.gameObject))
                 {
                     frogParentNode.GetComponent<NodesController>().updateCellOnTop();
-                    frogParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+
+                    if (frogParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
+                    {
+                        frogParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                    }
+
                     Destroy(gameObject.transform.parent.transform.gameObject);
                 }
             });

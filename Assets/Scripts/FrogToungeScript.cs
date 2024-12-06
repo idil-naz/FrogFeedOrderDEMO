@@ -193,8 +193,14 @@ public class FrogToungeScript : MonoBehaviour
                     {
                         if (!LeanTween.isTweening(berryParentCell.gameObject))
                         {
+
                             berryParentNode.GetComponent<NodesController>().updateCellOnTop();
-                            berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                            if (berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
+                            {
+                                berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                            }
+
+
                             Destroy(berryParentCell.gameObject);
 
                         }
@@ -215,8 +221,13 @@ public class FrogToungeScript : MonoBehaviour
                     {
                         if (!LeanTween.isTweening(arrowParentCell.gameObject)){
 
-                            arrowParentNode.GetComponent<NodesController>().updateCellOnTop();
-                            arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                                arrowParentNode.GetComponent<NodesController>().updateCellOnTop();
+
+                            if (arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
+                            {
+                                arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                            }
+
                             Destroy(arrowParentCell.gameObject);
                         }
                     });
