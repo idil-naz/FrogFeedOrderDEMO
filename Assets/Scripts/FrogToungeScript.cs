@@ -13,6 +13,7 @@ public class FrogToungeScript : MonoBehaviour
     private List<Vector3> points;
 
     public bool berryCollectionCompleted = false;
+    //public bool pathingCompleted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -87,10 +88,10 @@ public class FrogToungeScript : MonoBehaviour
         points.Add(endingPos);
         frogTounge.positionCount = points.Count;
 
-        float lineSegmentDuration = duration;
         float startTime = Time.time;
+        float lineSegmentDuration = duration;
 
-        while (Time.time - startTime < duration)
+        while (Time.time - startTime < lineSegmentDuration)
         {
             float t = (Time.time - startTime) / lineSegmentDuration;
             Vector3 pos = Vector3.Lerp(startingPos, endingPos, t);
@@ -100,7 +101,8 @@ public class FrogToungeScript : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+
+       yield return new WaitForSeconds(2f);
 
         startTime = Time.time;
         startingPos = points[points.Count - 1];
@@ -116,7 +118,6 @@ public class FrogToungeScript : MonoBehaviour
             float t = Mathf.Clamp01(elapsedTime/retractionTime);
 
             Vector3 pos = Vector3.Lerp(startingPos, endingPos, t);
-
             frogTounge.SetPosition(points.Count - 1, pos);
 
             CollectBerries(pos);
@@ -136,8 +137,6 @@ public class FrogToungeScript : MonoBehaviour
         frogTounge.SetPosition(points.Count - 1, endingPos);
 
         yield return new WaitForSeconds(2f);
-
-
     }
 
     public void CollectBerries(Vector3 tounguePos)
@@ -186,8 +185,6 @@ public class FrogToungeScript : MonoBehaviour
 
                 }
 
-
-
                 //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
                 if (col.transform.parent != null)
                 {
@@ -225,8 +222,6 @@ public class FrogToungeScript : MonoBehaviour
                         });
                     }
                     
-
-
                 }
 
             }

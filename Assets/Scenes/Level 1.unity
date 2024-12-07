@@ -1084,7 +1084,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.15
+  pathingExecutionTime: 0.25
   frogTounge: {fileID: 1291175849}
 --- !u!1 &41761104
 GameObject:
@@ -25939,8 +25939,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1118017090}
-  - component: {fileID: 1118017092}
   - component: {fileID: 1118017091}
+  - component: {fileID: 1118017092}
   m_Layer: 0
   m_Name: Frog (1)
   m_TagString: Frog
@@ -25999,7 +25999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d113eca7e04cf348a66abe070d639fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogParentNode: {fileID: 2131753141}
+  frogParentNode: {fileID: 0}
   frogParentCell: {fileID: 0}
   frogDirection: 1
   currentNode: {fileID: 0}

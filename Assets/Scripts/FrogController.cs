@@ -104,6 +104,8 @@ public class FrogController : MonoBehaviour
     {
         isMoving = true;
         gameObject.GetComponent<Collider>().enabled = false;
+        //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = false;
+
         while (isMoving)
         {
 
@@ -116,30 +118,25 @@ public class FrogController : MonoBehaviour
                 {
                     //COROUTINE CALL
                     StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+
                     //Debug.Log("TOP CELL COLORS MATCH. NEXT NODE IN PATH: " + nextNode.name);
                     currentNode = nextNode;
 
                     GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
 
                     //Debug.Log("NEW CURRENT NODE: " + currentNode.name);
-
-
                     pathNodes.Add(currentNode.gameObject);
 
                     if (objectOnNextCell.CompareTag("Grape"))
                     {
                         berriesOnPath.Add(objectOnNextCell);
                         //Debug.Log("[COLLECTING GRAPE]");
-
-
                         //LEAN TWEEN ANIMATIONS
                         LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
                                 .setOnComplete(() =>
                                 {
                                     LeanTween.scale(objectOnNextCell, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
                                 });
-
-
                     }
                     if (objectOnNextCell.CompareTag("Arrow"))
                     {
@@ -158,6 +155,8 @@ public class FrogController : MonoBehaviour
                     this.gameObject.GetComponent<Collider>().enabled = true;
                     isMoving = false;
                     currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
+                    //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
+
                     break;
                     //current node goes back to being the frog's node.
                 }
@@ -175,13 +174,13 @@ public class FrogController : MonoBehaviour
 
                 gameObject.GetComponent<Collider>().enabled = true;
                 isMoving = false;
+                //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
+
                 currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                 currentDirection = (Direction)frogDirection;
 
                 break;
             }
-
-            
 
         }
 
