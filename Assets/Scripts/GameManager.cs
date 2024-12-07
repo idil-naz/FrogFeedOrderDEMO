@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ReInitResButton();
+
     }
 
     private void OnEnable()
