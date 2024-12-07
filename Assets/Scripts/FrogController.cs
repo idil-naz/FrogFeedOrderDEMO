@@ -42,6 +42,10 @@ public class FrogController : MonoBehaviour
 
     private bool frogDestroyed = false;
 
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +73,8 @@ public class FrogController : MonoBehaviour
         //PATHING
         currentDirection = (Direction)frogDirection;
         frogParentCell = gameObject.transform.parent.gameObject;
-        frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode;
+        frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode.gameObject;
+
         currentNode = frogParentNode.GetComponent<NodesController>();
         pathNodes.Add(frogParentNode);
 
@@ -102,16 +107,15 @@ public class FrogController : MonoBehaviour
         while (isMoving)
         {
 
-            if (getNextNode(currentDirection) != null)
+            if (getNextNode(currentDirection) != null && getNextNode(currentDirection).GetComponent<NodesController>().cellOnTop != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
                 //Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
 
-                //COROUTINE CALL
-                StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
-
-                if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor)
+                if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor && !pathNodes.Contains(nextNode.gameObject))
                 {
+                    //COROUTINE CALL
+                    StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
                     //Debug.Log("TOP CELL COLORS MATCH. NEXT NODE IN PATH: " + nextNode.name);
                     currentNode = nextNode;
 
@@ -212,9 +216,14 @@ public class FrogController : MonoBehaviour
 
     public void DestroyFrog()
     {
-            gameObject.transform.parent.transform.parent = null;
+        gameObject.transform.parent.transform.parent = null;
 
-            LeanTween.scale(gameObject.transform.parent.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+        if (!LeanTween.isTweening(gameObject))
+        {
+            LeanTween.cancel(gameObject);
+        }
+
+        LeanTween.scale(gameObject.transform.parent.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
             {
                 if (!LeanTween.isTweening(gameObject.transform.parent.gameObject.gameObject))
                 {

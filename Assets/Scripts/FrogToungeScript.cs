@@ -17,6 +17,8 @@ public class FrogToungeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LeanTween.init(800);
+
         parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
         duration = parentFrog.pathingExecutionTime;
 
@@ -24,17 +26,18 @@ public class FrogToungeScript : MonoBehaviour
         frogTounge = GetComponent<LineRenderer>();
         points = new List<Vector3>();
 
+        //Debug.Log("gameobj: " + gameObject.transform.parent.gameObject.name + parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell));
+
         Vector3 initPos = new Vector3(
 
                 parentFrog.transform.position.x,
-                parentFrog.transform.position.y + 0.15f * parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.transform.parent.gameObject),
+                parentFrog.transform.position.y + 0.15f * parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell),
                 parentFrog.transform.position.z
             );
 
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
         frogTounge.SetPosition(0, initPos);
-
     }
 
     public IEnumerator ToungeAnim()
@@ -132,9 +135,8 @@ public class FrogToungeScript : MonoBehaviour
 
         frogTounge.SetPosition(points.Count - 1, endingPos);
 
-        yield return new WaitForSeconds(1.5f);
-        parentFrog.pathNodes.Clear();
-        parentFrog.berriesOnPath.Clear();
+        yield return new WaitForSeconds(2f);
+
 
     }
 
@@ -145,9 +147,7 @@ public class FrogToungeScript : MonoBehaviour
         float smooth = 0.06f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
-        //parentFrog.GetComponent<Collider>().enabled = false;
         
-
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
         sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
 
@@ -155,15 +155,17 @@ public class FrogToungeScript : MonoBehaviour
 
         foreach (Collider col in sortedBerries)
         {
+            if (!LeanTween.isTweening(col.gameObject))
+            {
+                LeanTween.cancel(col.gameObject);
+            }
+
             if (col.CompareTag("Grape") && parentFrog.berriesOnPath.Contains(col.gameObject))
             {
-                //col.GetComponent<BerryController>().berryParentCell.GetComponent<CellController>().cellColor == parentFrog.GetComponent<FrogController>().frogParentCell.GetComponent<CellController>().cellColor
                 Vector3 berryPosition = col.transform.position;
 
                 Vector3 direction = (prevBerryPos - berryPosition).normalized;
                 Vector3 targetPosition = berryPosition + direction * spacing;
-
-                //prevBerryPos = col.transform.position;
                 prevBerryPos = targetPosition;
 
 
@@ -177,8 +179,11 @@ public class FrogToungeScript : MonoBehaviour
                     .setOnComplete(() =>
                     {
                         Destroy(col.gameObject);
+                        parentFrog.pathNodes.Clear();
+                        parentFrog.berriesOnPath.Clear();
                         berryCollectionCompleted = true;
                     });
+
                 }
 
 
@@ -186,26 +191,42 @@ public class FrogToungeScript : MonoBehaviour
                 //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
                 if (col.transform.parent != null)
                 {
+                    
                     GameObject berryParentCell = col.transform.parent.gameObject;
-                    GameObject berryParentNode = berryParentCell.GetComponent<CellController>().cellParentNode;
-                    col.transform.parent = null;
 
-                    LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+                    if (berryParentCell != null && berryParentCell.GetComponent<CellController>() != null)
                     {
-                        if (!LeanTween.isTweening(berryParentCell.gameObject))
+                        GameObject berryParentNode = berryParentCell.GetComponent<CellController>().cellParentNode;
+                        col.transform.parent = null;
+
+                        if (!LeanTween.isTweening(berryParentCell))
                         {
-
-                            berryParentNode.GetComponent<NodesController>().updateCellOnTop();
-                            if (berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
-                            {
-                                berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
-                            }
-
-
-                            Destroy(berryParentCell.gameObject);
-
+                            LeanTween.cancel(berryParentCell);
                         }
-                    });
+
+                        LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+                        {
+                            if (!LeanTween.isTweening(berryParentCell.gameObject))
+                            {
+
+                                if (berryParentNode != null && berryParentNode.GetComponent<NodesController>() != null)
+                                {
+                                    berryParentNode.GetComponent<NodesController>().updateCellOnTop();
+                                }
+                                if (berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
+                                {
+                                    berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                                }
+
+
+                                Destroy(berryParentCell.gameObject);
+
+                            }
+                        });
+                    }
+                    
+
+
                 }
 
             }
@@ -217,6 +238,11 @@ public class FrogToungeScript : MonoBehaviour
                     GameObject arrowParentCell = col.transform.parent.gameObject;
                     GameObject arrowParentNode = arrowParentCell.GetComponent<CellController>().cellParentNode;
                     arrowParentCell.transform.parent = null;
+
+                    if (!LeanTween.isTweening(arrowParentCell))
+                    {
+                        LeanTween.cancel(arrowParentCell);
+                    }
 
                     LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
                     {
@@ -233,7 +259,6 @@ public class FrogToungeScript : MonoBehaviour
                         }
                     });
                 }
-
             }
 
 
