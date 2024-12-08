@@ -20,7 +20,7 @@ public class GameGridController : MonoBehaviour
     void Start()
     {
         assignNeighbors();
-    }
+}
 
     void assignNeighbors()
     {
@@ -50,4 +50,18 @@ public class GameGridController : MonoBehaviour
         }
         return null; //if no node was found at target location
     }
+
+    public bool allCellsCleared()
+    {
+        foreach (GameObject node in allNodes)
+        {
+            var nodeController = node.GetComponent<NodesController>();
+            if (nodeController != null && nodeController.cells.Count != 1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

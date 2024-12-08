@@ -87,6 +87,7 @@ public class FrogController : MonoBehaviour
         {
             StartCoroutine(StartPathing());
             //gameObject.GetComponent<Collider>().enabled = false;
+            gameManager.moves--;
         }
 
     }
@@ -107,10 +108,12 @@ public class FrogController : MonoBehaviour
 
         while (isMoving)
         {
-            if (getNextNode(currentDirection) != null)
+            NodesController nextNode = getNextNode(currentDirection);
+
+            if (nextNode != null && nextNode.GetComponent<NodesController>() != null)
             {
-                NodesController nextNode = getNextNode(currentDirection);
-                if (getNextNode(currentDirection) != null && getNextNode(currentDirection).GetComponent<NodesController>().cellOnTop != null)
+
+                if (nextNode.cellOnTop != null && nextNode.cellOnTop.GetComponent<CellController>() != null)
                 {
                     //Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
 
@@ -184,6 +187,7 @@ public class FrogController : MonoBehaviour
                 }
 
             }
+
             isMoving = false;
             yield break;
 

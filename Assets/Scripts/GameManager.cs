@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class GameManager : MonoBehaviour
     public List<Material> frogMaterials;
     public List<Material> berryMaterials;
 
+    public GameGridController gridController;
+    bool levelCompleteTriggered = false;
 
     public Button restartButton;
+    public TextMeshProUGUI movesLeftTxt;
+    public int moves;
 
     private void Awake()
     {
@@ -37,6 +42,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ReInitResButton();
+        moves = 20;
+
+        InvokeRepeating("CheckLevelCompletion", 1f, 1f);
+    }
+
+    private void Update()
+    {
+        movesLeftTxt.SetText("Moves Left: " + moves);
 
     }
 
@@ -76,5 +89,21 @@ public class GameManager : MonoBehaviour
             restartButton.onClick.RemoveAllListeners();
             restartButton.onClick.AddListener(RestartLevel);
         }
+    }
+
+    private void CheckLevelCompletion()
+    {
+        if (!levelCompleteTriggered && gridController != null && gridController.allCellsCleared())
+        {
+            LevelComplete();
+        }
+    }
+
+    public void LevelComplete()
+    {
+        levelCompleteTriggered = true;
+
+        //Trigger end of level stuff
+
     }
 }
