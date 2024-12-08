@@ -28,13 +28,14 @@ public class NodesController : MonoBehaviour
             cells.Add(gameObject.transform.GetChild(i).gameObject);
 
             cellOnTop = gameObject.transform.GetChild(transform.childCount - 1).gameObject;
-            updateCellOnTop(cellOnTop);
+            
         }
-
+        
     }
 
     void Start()
     {
+        updateCellOnTop(cellOnTop);
         setCellPositions();
     }
 

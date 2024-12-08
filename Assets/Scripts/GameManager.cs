@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ReInitResButton();
-        moves = 20;
+        moves = 25;
 
         InvokeRepeating("CheckLevelCompletion", 1f, 1f);
     }
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         if (!levelCompleteTriggered && gridController != null && gridController.allCellsCleared())
         {
+            Debug.Log("level complete");
             LevelComplete();
         }
         if(!levelCompleteTriggered && moves == 0)

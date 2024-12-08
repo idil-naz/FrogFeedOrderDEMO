@@ -18,7 +18,7 @@ public class FrogToungeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LeanTween.init(800);
+        LeanTween.init(1000);
 
         parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
         duration = parentFrog.pathingExecutionTime;
@@ -27,14 +27,14 @@ public class FrogToungeScript : MonoBehaviour
         frogTounge = GetComponent<LineRenderer>();
         points = new List<Vector3>();
 
-        //Debug.Log("gameobj: " + gameObject.transform.parent.gameObject.name + parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell));
+        //Debug.Log("gameobj: " + gameObject.transform.parent.gameObject.name + " " + parentFrog.frogParentCell.transform.GetSiblingIndex());
 
         Vector3 initPos = new Vector3(
 
                 parentFrog.transform.position.x,
-                parentFrog.transform.position.y + 0.15f /** parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell)*/,
+                parentFrog.transform.position.y + 0.15f * parentFrog.frogParentCell.transform.GetSiblingIndex(),
                 parentFrog.transform.position.z
-            );
+            ) ;
 
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
@@ -178,9 +178,10 @@ public class FrogToungeScript : MonoBehaviour
                     .setOnComplete(() =>
                     {
                         Destroy(col.gameObject);
-                        parentFrog.pathNodes.Clear();
                         parentFrog.berriesOnPath.Clear();
                         berryCollectionCompleted = true;
+
+                        parentFrog.pathNodes.Clear();
                     });
 
                 }

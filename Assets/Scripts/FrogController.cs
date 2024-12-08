@@ -75,6 +75,7 @@ public class FrogController : MonoBehaviour
         currentDirection = (Direction)frogDirection;
 
         frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode.gameObject;
+        
         currentNode = frogParentNode.GetComponent<NodesController>();
         pathNodes.Add(frogParentNode);
 
