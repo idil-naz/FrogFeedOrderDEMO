@@ -44,6 +44,7 @@ public class FrogController : MonoBehaviour
 
     private void Awake()
     {
+        frogParentCell = gameObject.transform.parent.gameObject;
         
     }
     // Start is called before the first frame update
@@ -72,9 +73,8 @@ public class FrogController : MonoBehaviour
 
         //PATHING
         currentDirection = (Direction)frogDirection;
-        frogParentCell = gameObject.transform.parent.gameObject;
-        frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode.gameObject;
 
+        frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode.gameObject;
         currentNode = frogParentNode.GetComponent<NodesController>();
         pathNodes.Add(frogParentNode);
 
@@ -104,11 +104,11 @@ public class FrogController : MonoBehaviour
     {
         isMoving = true;
         gameObject.GetComponent<Collider>().enabled = false;
-        //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = false;
+
+        //NodesController nextNode = getNextNode(currentDirection).GetComponent<NodesController>();
 
         while (isMoving)
         {
-
             if (getNextNode(currentDirection) != null && getNextNode(currentDirection).GetComponent<NodesController>().cellOnTop != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
