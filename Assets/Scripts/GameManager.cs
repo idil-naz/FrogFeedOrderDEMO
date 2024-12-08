@@ -97,6 +97,11 @@ public class GameManager : MonoBehaviour
         {
             LevelComplete();
         }
+        if(!levelCompleteTriggered && moves == 0)
+        {
+            Debug.Log("level failed");
+            CancelInvoke();
+        }
     }
 
     public void LevelComplete()
@@ -106,4 +111,6 @@ public class GameManager : MonoBehaviour
         //Trigger end of level stuff
 
     }
+
+    
 }
