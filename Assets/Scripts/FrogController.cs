@@ -105,82 +105,87 @@ public class FrogController : MonoBehaviour
         isMoving = true;
         gameObject.GetComponent<Collider>().enabled = false;
 
-        //NodesController nextNode = getNextNode(currentDirection).GetComponent<NodesController>();
-
         while (isMoving)
         {
-            if (getNextNode(currentDirection) != null && getNextNode(currentDirection).GetComponent<NodesController>().cellOnTop != null)
+            if (getNextNode(currentDirection) != null)
             {
                 NodesController nextNode = getNextNode(currentDirection);
-                //Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
-
-                if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor && !pathNodes.Contains(nextNode.gameObject))
+                if (getNextNode(currentDirection) != null && getNextNode(currentDirection).GetComponent<NodesController>().cellOnTop != null)
                 {
-                    //COROUTINE CALL
-                    StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+                    //Debug.Log("CURRENT NODE: " + currentNode.name + " " + "//" + " " + "NEXT NODE IN DIRECTION: " + nextNode.name + " " + "//" + " " + "CURRENT DIRECTION: " + currentDirection);
 
-                    //Debug.Log("TOP CELL COLORS MATCH. NEXT NODE IN PATH: " + nextNode.name);
-                    currentNode = nextNode;
-
-                    GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
-
-                    //Debug.Log("NEW CURRENT NODE: " + currentNode.name);
-                    pathNodes.Add(currentNode.gameObject);
-
-                    if (objectOnNextCell.CompareTag("Grape"))
+                    if (nextNode.getCellOnTop().GetComponent<CellController>().cellColor == currentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().cellColor && !pathNodes.Contains(nextNode.gameObject))
                     {
-                        berriesOnPath.Add(objectOnNextCell);
-                        //Debug.Log("[COLLECTING GRAPE]");
-                        //LEAN TWEEN ANIMATIONS
-                        LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
-                                .setOnComplete(() =>
-                                {
-                                    LeanTween.scale(objectOnNextCell, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
-                                });
+                        //COROUTINE CALL
+                        StartCoroutine(frogTounge.GetComponent<FrogToungeScript>().ToungeAnim());
+
+                        //Debug.Log("TOP CELL COLORS MATCH. NEXT NODE IN PATH: " + nextNode.name);
+                        currentNode = nextNode;
+
+                        GameObject objectOnNextCell = currentNode.getCellOnTop().GetComponent<CellController>().housedGameObject;
+
+                        //Debug.Log("NEW CURRENT NODE: " + currentNode.name);
+                        pathNodes.Add(currentNode.gameObject);
+
+                        if (objectOnNextCell.CompareTag("Grape"))
+                        {
+                            berriesOnPath.Add(objectOnNextCell);
+                            //Debug.Log("[COLLECTING GRAPE]");
+                            //LEAN TWEEN ANIMATIONS
+                            LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
+                                    .setOnComplete(() =>
+                                    {
+                                        LeanTween.scale(objectOnNextCell, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
+                                    });
+                        }
+                        if (objectOnNextCell.CompareTag("Arrow"))
+                        {
+                            //Debug.Log("CHANGING DIRECTION");
+                            currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
+                            //Debug.Log("NEW CURRENT DIRECTION: " + currentDirection);
+                        }
+
                     }
-                    if (objectOnNextCell.CompareTag("Arrow"))
+                    else
                     {
-                        //Debug.Log("CHANGING DIRECTION");
-                        currentDirection = (Direction)objectOnNextCell.GetComponent<ArrowController>().direction;
-                        //Debug.Log("NEW CURRENT DIRECTION: " + currentDirection);
+                        //Debug.Log("TOP CELL COLORS DO NOT MATCH. RETRACTING");
+                        currentDirection = (Direction)frogDirection;
+                        currentNode = frogParentNode.GetComponent<NodesController>();
+
+                        this.gameObject.GetComponent<Collider>().enabled = true;
+                        isMoving = false;
+                        currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
+                        //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
+
+                        break;
+                        //current node goes back to being the frog's node.
                     }
 
+
+                    isMoving = false;
+                    yield return new WaitForSeconds(pathingExecutionTime);
+                    yield return StartCoroutine(StartPathing());
                 }
+
                 else
                 {
-                    //Debug.Log("TOP CELL COLORS DO NOT MATCH. RETRACTING");
-                    currentDirection = (Direction)frogDirection;
-                    currentNode = frogParentNode.GetComponent<NodesController>();
+                    //Start collecting berries
+                    yield return new WaitForSeconds(1f);
+                    //Debug.Log("END OF PATH. COLLECTING BERRIES");
 
-                    this.gameObject.GetComponent<Collider>().enabled = true;
+                    gameObject.GetComponent<Collider>().enabled = true;
                     isMoving = false;
-                    currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                     //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
 
+                    currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
+                    currentDirection = (Direction)frogDirection;
+
                     break;
-                    //current node goes back to being the frog's node.
                 }
 
-               
-                isMoving = false;
-                yield return new WaitForSeconds(pathingExecutionTime);
-                yield return StartCoroutine(StartPathing());
             }
-            else
-            {
-                //Start collecting berries
-                yield return new WaitForSeconds(1f);
-                //Debug.Log("END OF PATH. COLLECTING BERRIES");
-
-                gameObject.GetComponent<Collider>().enabled = true;
-                isMoving = false;
-                //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
-
-                currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
-                currentDirection = (Direction)frogDirection;
-
-                break;
-            }
+            isMoving = false;
+            yield break;
 
         }
 

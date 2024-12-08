@@ -32,7 +32,7 @@ public class FrogToungeScript : MonoBehaviour
         Vector3 initPos = new Vector3(
 
                 parentFrog.transform.position.x,
-                parentFrog.transform.position.y + 0.15f * parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell),
+                parentFrog.transform.position.y + 0.115f * parentFrog.frogParentNode.GetComponent<NodesController>().cells.IndexOf(parentFrog.frogParentCell),
                 parentFrog.transform.position.z
             );
 

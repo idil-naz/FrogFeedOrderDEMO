@@ -1244,7 +1244,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1291175849}
 --- !u!1 &39933755
 GameObject:
@@ -2524,7 +2524,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 106817172}
 --- !u!1 &89399027
 GameObject:
@@ -8488,7 +8488,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1885140831}
 --- !u!1 &292750454
 GameObject:
@@ -12807,7 +12807,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 393196752}
 --- !u!1 &442105766
 GameObject:
@@ -19100,7 +19100,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 719221214}
 --- !u!1 &681332434
 GameObject:
@@ -19427,7 +19427,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 233158348}
 --- !u!1 &694128743
 GameObject:
@@ -22380,7 +22380,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1255365161}
 --- !u!65 &805871065
 BoxCollider:
@@ -22616,7 +22616,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1260753475}
 --- !u!65 &816505020
 BoxCollider:
@@ -30525,7 +30525,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1316849106}
 --- !u!1 &1121100351
 GameObject:
@@ -51572,7 +51572,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 2017374081}
 --- !u!1 &1925513302
 GameObject:
@@ -52828,7 +52828,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 1565922006}
 --- !u!1 &1960131161
 GameObject:
@@ -55945,7 +55945,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 888279683}
 --- !u!1 &2060481628
 GameObject:
@@ -59717,7 +59717,7 @@ MonoBehaviour:
   pathNodes: []
   berriesOnPath: []
   currentDirection: 0
-  pathingExecutionTime: 0.25
+  pathingExecutionTime: 0.2
   frogTounge: {fileID: 684818781496232817}
 --- !u!4 &2519494870315988256
 Transform:
