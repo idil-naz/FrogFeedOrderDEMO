@@ -155,7 +155,7 @@ public class FrogToungeScript : MonoBehaviour
 
     public void CollectBerries(Vector3 tounguePos)
     {
-        float collectionRadar = 0.5f;
+        float collectionRadar = 0.75f;
         float spacing = 1f;
         float smooth = 0.06f;
 
