@@ -155,17 +155,12 @@ public class FrogToungeScript : MonoBehaviour
 
     public void CollectBerries(Vector3 tounguePos)
     {
-        float collectionRadar = 0.5f;
+        float collectionRadar = 0.7f;
         float spacing = 1f;
         float smooth = 0.06f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
 
-        //for (int i = 0; i < berriesOnRadar.Length; i++)
-        //{
-        //    Debug.Log(berriesOnRadar[i].name);
-        //}
-        
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
         sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
 
@@ -193,6 +188,10 @@ public class FrogToungeScript : MonoBehaviour
                 //LEAN TWEEN ANIMATIONS WHEN BERRIES REACH FROG
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.85f)
                 {
+                    if (!LeanTween.isTweening(col.gameObject))
+                    {
+                        LeanTween.cancel(col.gameObject);
+                    }
                     LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine)
                     .setOnComplete(() =>
                     {
