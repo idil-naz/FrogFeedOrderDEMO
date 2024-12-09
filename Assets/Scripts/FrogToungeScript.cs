@@ -15,30 +15,44 @@ public class FrogToungeScript : MonoBehaviour
     public bool berryCollectionCompleted = false;
     //public bool pathingCompleted = false;
 
+
+    private void Awake()
+    {
+        parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
+        frogTounge = GetComponent<LineRenderer>();
+
+       
+    }
     // Start is called before the first frame update
     void Start()
     {
         LeanTween.init(1000);
 
-        parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
+        if (parentFrog.frogParentCell == null)
+        {
+            parentFrog.frogParentCell = gameObject.transform.parent.parent.GetComponent<CellController>().gameObject;
+        }
+
+
         duration = parentFrog.pathingExecutionTime;
-
-
-        frogTounge = GetComponent<LineRenderer>();
         points = new List<Vector3>();
-
-        //Debug.Log("gameobj: " + gameObject.transform.parent.gameObject.name + " " + parentFrog.frogParentCell.transform.GetSiblingIndex());
 
         Vector3 initPos = new Vector3(
 
                 parentFrog.transform.position.x,
-                parentFrog.transform.position.y + 0.15f * parentFrog.frogParentCell.transform.GetSiblingIndex(),
+                parentFrog.transform.position.y,
                 parentFrog.transform.position.z
             ) ;
 
+        if (parentFrog.frogParentCell != null)
+        {
+            initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * (0.12f * parentFrog.frogParentCell.transform.GetSiblingIndex()));
+        }
+
+        frogTounge.SetPosition(0, initPos);
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
-        frogTounge.SetPosition(0, initPos);
+        
     }
 
     public IEnumerator ToungeAnim()
@@ -146,6 +160,11 @@ public class FrogToungeScript : MonoBehaviour
         float smooth = 0.06f;
 
         Collider[] berriesOnRadar = Physics.OverlapSphere(tounguePos, collectionRadar);
+
+        //for (int i = 0; i < berriesOnRadar.Length; i++)
+        //{
+        //    Debug.Log(berriesOnRadar[i].name);
+        //}
         
         List<Collider> sortedBerries = new List<Collider>(berriesOnRadar);
         sortedBerries.Sort((a, b) => Vector3.Distance(tounguePos, a.transform.position).CompareTo(Vector3.Distance(tounguePos, b.transform.position)));
@@ -179,9 +198,10 @@ public class FrogToungeScript : MonoBehaviour
                     {
                         Destroy(col.gameObject);
                         parentFrog.berriesOnPath.Clear();
+                        parentFrog.pathNodes.Clear();
+
                         berryCollectionCompleted = true;
 
-                        parentFrog.pathNodes.Clear();
                     });
 
                 }
@@ -260,7 +280,6 @@ public class FrogToungeScript : MonoBehaviour
 
         }
     }
-
 
 
 }

@@ -23,6 +23,7 @@ public class BerryController : MonoBehaviour
         berryParentCell = gameObject.transform.parent.gameObject;
         berryParentNode = berryParentCell.transform.parent.gameObject;
 
+       // gameObject.GetComponent<Collider>().enabled = false;
     }
 
 }

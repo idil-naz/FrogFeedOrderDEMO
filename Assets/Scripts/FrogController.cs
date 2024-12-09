@@ -54,6 +54,9 @@ public class FrogController : MonoBehaviour
 
         Renderer renderer = gameObject.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         renderer.material = gameManager.frogMaterials[((int)gameObject.transform.parent.GetComponent<CellController>().cellColor)];
+        
+        Vector3 initialposition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.15f, gameObject.transform.position.z);
+        gameObject.transform.position = initialposition;
 
         switch (frogDirection)
         {
@@ -134,6 +137,7 @@ public class FrogController : MonoBehaviour
                         if (objectOnNextCell.CompareTag("Grape"))
                         {
                             berriesOnPath.Add(objectOnNextCell);
+                            
                             //Debug.Log("[COLLECTING GRAPE]");
                             //LEAN TWEEN ANIMATIONS
                             LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)

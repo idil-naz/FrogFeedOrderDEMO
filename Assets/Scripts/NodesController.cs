@@ -30,13 +30,23 @@ public class NodesController : MonoBehaviour
             cellOnTop = gameObject.transform.GetChild(transform.childCount - 1).gameObject;
             
         }
-        
+
+        setCellPositions();
+        updateCellOnTop(cellOnTop);
     }
 
     void Start()
     {
-        updateCellOnTop(cellOnTop);
-        setCellPositions();
+
+        for (int i = 0; i < cells.Count; i++)
+        {
+            if (cells[i].GetComponent<CellController>() != null)
+            {
+                cells[i].GetComponent<CellController>().checkSelf();
+
+            }
+        }
+       
     }
 
     public void updateCellOnTop(GameObject newCellonTop)

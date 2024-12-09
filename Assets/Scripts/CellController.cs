@@ -29,8 +29,29 @@ public class CellController : MonoBehaviour
 
     private void Awake()
     {
-        if (gameObject.transform.parent != null) cellParentNode = gameObject.transform.parent.gameObject;
-        if (gameObject.transform.childCount > 0) housedGameObject = gameObject.transform.GetChild(0).gameObject;
+        cellParentNode = gameObject.transform.parent.gameObject;
+        housedGameObject = gameObject.transform.GetChild(0).gameObject;
+
+        
+
+        if (housedGameObject != null)
+        {
+
+
+            if (housedElementType == HousedElementType.Frog)
+            {
+                housedGameObject.GetComponent<FrogController>().frogParentNode = cellParentNode;
+            }
+            else if (housedElementType == HousedElementType.Berry)
+            {
+                housedGameObject.GetComponent<BerryController>().berryParentNode = cellParentNode;
+            }
+            else if (housedElementType == HousedElementType.Arrow)
+            {
+                housedGameObject.GetComponent<ArrowController>().arrowParentNode = cellParentNode;
+            }
+        }
+        checkSelf();
     }
 
     // Start is called before the first frame update
@@ -38,6 +59,41 @@ public class CellController : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
+        setCellColor();
+        
+    }
+
+    public void checkSelf()
+    {
+        if (cellParentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
+        {
+            housedGameObject.SetActive(false);
+            if (housedGameObject.CompareTag("Grape"))
+            {
+                housedGameObject.GetComponent<Collider>().enabled = false;
+            }
+        }
+        else
+        {
+            housedGameObject.SetActive(true);
+            if (housedGameObject.CompareTag("Grape"))
+            {
+                housedGameObject.GetComponent<Collider>().enabled = true;
+            }
+
+            if (!LeanTween.isTweening(this.gameObject))
+            {
+                LeanTween.scale(this.gameObject, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce).setOnComplete(() =>
+                {
+                    LeanTween.scale(this.gameObject, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
+                });
+            }
+
+        }
+    }
+
+    void setCellColor()
+    {
         Renderer renderer = GetComponent<Renderer>();
 
         switch (cellColor)
@@ -57,45 +113,6 @@ public class CellController : MonoBehaviour
             case CellColor.Yellow:
                 renderer.material = gameManager.cellMaterials[4];
                 break;
-        }
-
-        if (housedGameObject != null)
-        {
-            checkSelf();
-
-            if (housedElementType == HousedElementType.Frog)
-            {
-                housedGameObject.GetComponent<FrogController>().frogParentNode = cellParentNode;
-            }
-            else if (housedElementType == HousedElementType.Berry)
-            {
-                housedGameObject.GetComponent<BerryController>().berryParentNode = cellParentNode;
-            }
-            else if (housedElementType == HousedElementType.Arrow)
-            {
-                housedGameObject.GetComponent<ArrowController>().arrowParentNode = cellParentNode;
-            }
-        }
-    }
-
-    public void checkSelf()
-    {
-        if (cellParentNode.GetComponent<NodesController>().getCellOnTop() != this.gameObject)
-        {
-            housedGameObject.SetActive(false);
-        }
-        else
-        {
-            housedGameObject.SetActive(true);
-
-            if (!LeanTween.isTweening(this.gameObject))
-            {
-                LeanTween.scale(this.gameObject, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce).setOnComplete(() =>
-                {
-                    LeanTween.scale(this.gameObject, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
-                });
-            }
-
         }
     }
 }

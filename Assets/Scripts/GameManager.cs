@@ -41,15 +41,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ReInitResButton();
-        moves = 25;
+        ReinitLevel();
+        
 
         InvokeRepeating("CheckLevelCompletion", 1f, 1f);
     }
 
     private void Update()
     {
-        movesLeftTxt.SetText("Moves Left: " + moves);
+        if (movesLeftTxt != null)
+        {
+            movesLeftTxt.SetText("Moves Left: " + moves);
+        }
 
     }
 
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ReInitResButton();
+        ReinitLevel();
     }
 
     public void RestartLevel()
@@ -91,6 +94,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ReInitMoveLimit()
+    {
+        if (movesLeftTxt == null)
+        {
+            movesLeftTxt = GameObject.Find("MoveLimit").GetComponent<TextMeshProUGUI>();
+
+        }
+    }
+
     private void CheckLevelCompletion()
     {
         if (!levelCompleteTriggered && gridController != null && gridController.allCellsCleared())
@@ -113,5 +125,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
+    private void ReinitLevel()
+    {
+        ReInitResButton();
+        ReInitMoveLimit();
+        gridController = GameObject.Find("GameGrid").GetComponent<GameGridController>();
+        moves = 25;
+
+
+    }
 }
