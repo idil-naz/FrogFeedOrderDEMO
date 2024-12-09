@@ -8,6 +8,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] private LevelManager levelManager;
 
     public GameObject CellPrefab;
     public GameObject FrogPrefab;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     public List<Material> berryMaterials;
 
     public GameGridController gridController;
-    bool levelCompleteTriggered = false;
+    public bool levelCompleteTriggered = false;
 
     public Button restartButton;
     public TextMeshProUGUI movesLeftTxt;
@@ -41,9 +42,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ReinitLevel();
+        if(levelManager == null)
+        {
+            levelManager = FindObjectOfType<LevelManager>();
+        }
         
 
+        ReinitLevel();
         InvokeRepeating("CheckLevelCompletion", 1f, 1f);
     }
 
@@ -109,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("level complete");
             LevelComplete();
+            
         }
         if(!levelCompleteTriggered && moves == 0)
         {
@@ -121,7 +127,17 @@ public class GameManager : MonoBehaviour
     {
         levelCompleteTriggered = true;
 
-        //Trigger end of level stuff
+        if(levelManager != null)
+        {
+            LevelManager.Instance.NextLevel();
+            levelCompleteTriggered = false;
+
+        }
+        else
+        {
+            Debug.Log("level manager is null");
+
+        }
 
     }
 
