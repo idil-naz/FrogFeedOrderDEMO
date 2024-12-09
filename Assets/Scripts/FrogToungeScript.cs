@@ -46,7 +46,7 @@ public class FrogToungeScript : MonoBehaviour
 
         if (parentFrog.frogParentCell != null)
         {
-            initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * (0.12f * parentFrog.frogParentCell.transform.GetSiblingIndex()));
+            initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * (0.1f * parentFrog.frogParentCell.transform.GetSiblingIndex()));
         }
 
         frogTounge.SetPosition(0, initPos);
@@ -155,7 +155,7 @@ public class FrogToungeScript : MonoBehaviour
 
     public void CollectBerries(Vector3 tounguePos)
     {
-        float collectionRadar = 0.75f;
+        float collectionRadar = 0.5f;
         float spacing = 1f;
         float smooth = 0.06f;
 
@@ -191,7 +191,7 @@ public class FrogToungeScript : MonoBehaviour
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
 
                 //LEAN TWEEN ANIMATIONS WHEN BERRIES REACH FROG
-                if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.5f)
+                if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.85f)
                 {
                     LeanTween.scale(col.gameObject, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInOutSine)
                     .setOnComplete(() =>
@@ -209,7 +209,6 @@ public class FrogToungeScript : MonoBehaviour
                 //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
                 if (col.transform.parent != null)
                 {
-                    
                     GameObject berryParentCell = col.transform.parent.gameObject;
 
                     if (berryParentCell != null && berryParentCell.GetComponent<CellController>() != null)
