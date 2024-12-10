@@ -63,7 +63,7 @@ public class NodesController : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
-            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.15f, cells[i].transform.localPosition.z);
+            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.175f, cells[i].transform.localPosition.z);
 
         }
     }
@@ -74,6 +74,10 @@ public class NodesController : MonoBehaviour
         {
             cells.Remove(cells[cells.Count - 1]);
             cellOnTop = cells[cells.Count - 1];
+        }
+        else
+        {
+            cellOnTop = null;
         }
 
     }

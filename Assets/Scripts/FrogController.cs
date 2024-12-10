@@ -231,7 +231,7 @@ public class FrogController : MonoBehaviour
     {
         gameObject.transform.parent.transform.parent = null;
 
-        if (!LeanTween.isTweening(gameObject))
+        if (LeanTween.isTweening(gameObject))
         {
             LeanTween.cancel(gameObject);
         }

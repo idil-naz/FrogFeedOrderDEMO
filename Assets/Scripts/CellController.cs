@@ -88,6 +88,10 @@ public class CellController : MonoBehaviour
                     LeanTween.scale(this.gameObject, Vector3.one, 0.1f).setEase(LeanTweenType.easeInBounce);
                 });
             }
+            else
+            {
+                LeanTween.cancel(this.gameObject);
+            }
 
         }
     }

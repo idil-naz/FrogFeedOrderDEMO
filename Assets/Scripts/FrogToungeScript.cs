@@ -26,7 +26,7 @@ public class FrogToungeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LeanTween.init(1000);
+        LeanTween.init(800);
 
         if (parentFrog.frogParentCell == null)
         {
@@ -155,7 +155,7 @@ public class FrogToungeScript : MonoBehaviour
 
     public void CollectBerries(Vector3 tounguePos)
     {
-        float collectionRadar = 0.7f;
+        float collectionRadar = 0.6f;
         float spacing = 1f;
         float smooth = 0.06f;
 
@@ -168,11 +168,7 @@ public class FrogToungeScript : MonoBehaviour
 
         foreach (Collider col in sortedBerries)
         {
-            if (!LeanTween.isTweening(col.gameObject))
-            {
-                LeanTween.cancel(col.gameObject);
-            }
-
+           
             if (col.CompareTag("Grape") && parentFrog.berriesOnPath.Contains(col.gameObject))
             {
                 Vector3 berryPosition = col.transform.position;
@@ -186,9 +182,13 @@ public class FrogToungeScript : MonoBehaviour
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
 
                 //LEAN TWEEN ANIMATIONS WHEN BERRIES REACH FROG
+                if (LeanTween.isTweening(col.gameObject))
+                {
+                    LeanTween.cancel(col.gameObject);
+                }
                 if (Vector3.Distance(col.transform.position, parentFrog.transform.position) < 0.85f)
                 {
-                    if (!LeanTween.isTweening(col.gameObject))
+                    if (LeanTween.isTweening(col.gameObject))
                     {
                         LeanTween.cancel(col.gameObject);
                     }
@@ -215,7 +215,7 @@ public class FrogToungeScript : MonoBehaviour
                         GameObject berryParentNode = berryParentCell.GetComponent<CellController>().cellParentNode;
                         col.transform.parent = null;
 
-                        if (!LeanTween.isTweening(berryParentCell))
+                        if (LeanTween.isTweening(berryParentCell))
                         {
                             LeanTween.cancel(berryParentCell);
                         }
@@ -235,7 +235,10 @@ public class FrogToungeScript : MonoBehaviour
                                 }
 
 
-                                Destroy(berryParentCell.gameObject);
+                                if (berryParentNode != null && berryParentNode.GetComponent<NodesController>().cellOnTop == berryParentCell)
+                                {
+                                    Destroy(berryParentCell.gameObject);
+                                }
 
                             }
                         });
@@ -253,25 +256,31 @@ public class FrogToungeScript : MonoBehaviour
                     GameObject arrowParentNode = arrowParentCell.GetComponent<CellController>().cellParentNode;
                     arrowParentCell.transform.parent = null;
 
-                    if (!LeanTween.isTweening(arrowParentCell))
+                    if(arrowParentNode.GetComponent<NodesController>().cellOnTop == arrowParentCell)
                     {
-                        LeanTween.cancel(arrowParentCell);
-                    }
+                        if (LeanTween.isTweening(arrowParentCell))
+                        {
+                            LeanTween.cancel(arrowParentCell);
+                        }
 
-                    LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
-                    {
-                        if (!LeanTween.isTweening(arrowParentCell.gameObject)){
+                        LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+                        {
+                            if (!LeanTween.isTweening(arrowParentCell.gameObject))
+                            {
 
                                 arrowParentNode.GetComponent<NodesController>().updateCellOnTop();
 
-                            if (arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
-                            {
-                                arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
-                            }
+                                if (arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
+                                {
+                                    arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
+                                }
 
-                            Destroy(arrowParentCell.gameObject);
-                        }
-                    });
+                                Destroy(arrowParentCell.gameObject);
+                            }
+                        });
+                    }
+
+                
                 }
             }
 
