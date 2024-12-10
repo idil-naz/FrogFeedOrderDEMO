@@ -63,7 +63,7 @@ public class NodesController : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
-            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.175f, cells[i].transform.localPosition.z);
+            cells[i].transform.localPosition += new Vector3(cells[i].transform.localPosition.x, i * 0.12f, cells[i].transform.localPosition.z);
 
         }
     }
