@@ -5,6 +5,11 @@ using UnityEngine;
 using static ArrowController;
 using static CellController;
 
+//Script Description:
+    //This script is responsible for operations regarding the frog. Such as checking if the frog is clicked and generating a path if it is. The generated path is then draw on by a Line Renderer in a separate script.
+    //The logic for the pathing is written inside the function.
+    //Other responsibilities include intiializing position, direction, and color, as well as destroying the frog.
+
 public class FrogController : MonoBehaviour
 {
     private GameManager gameManager;
@@ -37,8 +42,7 @@ public class FrogController : MonoBehaviour
     public float pathingExecutionTime = 0.25f;
     private bool isMoving = false;
 
-    //FROG TOUNGE
-    public LineRenderer frogTounge;
+    public LineRenderer frogTounge; //FROG TONGUE
 
     private bool frogDestroyed = false;
 
@@ -74,7 +78,6 @@ public class FrogController : MonoBehaviour
                 break;
         }
 
-        //PATHING
         currentDirection = (Direction)frogDirection;
 
         frogParentNode = frogParentCell.GetComponent<CellController>().cellParentNode.gameObject;
@@ -90,7 +93,6 @@ public class FrogController : MonoBehaviour
         if (!isMoving)
         {
             StartCoroutine(StartPathing());
-            //gameObject.GetComponent<Collider>().enabled = false;
             gameManager.moves--;
         }
 
@@ -107,6 +109,18 @@ public class FrogController : MonoBehaviour
 
     IEnumerator StartPathing()
     {
+
+        /*THE LOGIC*/
+        //Move in the direction of the Frog's direction.
+        //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
+        //check the HOUSED OBJECT of the TOP CELL.
+
+        //If the housed object is a berry, collect it and move to the next NODE in the direction of the frog. Check the TOP CELL of that NODE.
+        //IF the housed object in an arrow, collect it and move to the next NODE in the direction of the arrow. Check the TOP CELL of that NODE.
+
+        //Continue with the same logic.
+
+
         isMoving = true;
         gameObject.GetComponent<Collider>().enabled = false;
 
@@ -138,7 +152,7 @@ public class FrogController : MonoBehaviour
                         {
                             berriesOnPath.Add(objectOnNextCell);
                             
-                            //Debug.Log("[COLLECTING GRAPE]");
+                            //Debug.Log("COLLECTING GRAPE");
                             //LEAN TWEEN ANIMATIONS
                             LeanTween.scale(objectOnNextCell, Vector3.one * 1.3f, 0.1f).setEase(LeanTweenType.easeOutBounce)
                                     .setOnComplete(() =>
@@ -157,13 +171,13 @@ public class FrogController : MonoBehaviour
                     else
                     {
                         //Debug.Log("TOP CELL COLORS DO NOT MATCH. RETRACTING");
+
                         currentDirection = (Direction)frogDirection;
                         currentNode = frogParentNode.GetComponent<NodesController>();
-
+                        
                         this.gameObject.GetComponent<Collider>().enabled = true;
                         isMoving = false;
                         currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
-                        //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
 
                         break;
                         //current node goes back to being the frog's node.
@@ -183,7 +197,6 @@ public class FrogController : MonoBehaviour
 
                     gameObject.GetComponent<Collider>().enabled = true;
                     isMoving = false;
-                    //frogTounge.GetComponent<FrogToungeScript>().pathingCompleted = true;
 
                     currentNode = gameObject.transform.parent.transform.parent.GetComponent<NodesController>();
                     currentDirection = (Direction)frogDirection;
@@ -197,17 +210,6 @@ public class FrogController : MonoBehaviour
             yield break;
 
         }
-
-        /*THE LOGIC*/
-        //Move in the direction of the Frog's direction.
-        //Check the NODE that is in the direction of the frog. Check the TOP CELL in that node. If it is the same color with the CURRENT CELL,
-        //check the HOUSED OBJECT of the TOP CELL.
-
-        //If the housed object is a berry, collect it and move to the next NODE in the direction of the frog. Check the TOP CELL of that NODE.
-        //IF the housed object in an arrow, collect it and move to the next NODE in the direction of the arrow. Check the TOP CELL of that NODE.
-
-        //Continue with the same logic.
-
         gameObject.GetComponent<Collider>().enabled = true;
         isMoving = false;
     }

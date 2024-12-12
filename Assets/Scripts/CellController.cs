@@ -1,8 +1,11 @@
-//using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+//Script description:
+    //CellController keeps the colors that are available to be inherited by housed objects. It also keeps information on the object it is housing, and the Node that it is a part of.
+    //This script is responsible for things like checking itself to see whether it is the top cell in the node, and activate the object on top of it if it is.
 
 public class CellController : MonoBehaviour
 {
@@ -32,12 +35,8 @@ public class CellController : MonoBehaviour
         cellParentNode = gameObject.transform.parent.gameObject;
         housedGameObject = gameObject.transform.GetChild(0).gameObject;
 
-        
-
         if (housedGameObject != null)
         {
-
-
             if (housedElementType == HousedElementType.Frog)
             {
                 housedGameObject.GetComponent<FrogController>().frogParentNode = cellParentNode;
@@ -60,7 +59,6 @@ public class CellController : MonoBehaviour
         gameManager = GameManager.Instance;
 
         setCellColor();
-        
     }
 
     public void checkSelf()

@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script Description:
+    //This script is responsible for basic initilization operations in the 6x6 grid.
+    //It passes information to all the nodes about their neighboring nodes (nodes on the left, right, front, and back of themselves)
+    //It also checks whether all the cells in each node have been cleared which is a condition for level completion.
+
 public class GameGridController : MonoBehaviour
 {
-
     public List<GameObject> allNodes;
     public GameObject nodesParentHolder;
 
@@ -27,7 +31,6 @@ public class GameGridController : MonoBehaviour
         foreach (GameObject node in allNodes)
         {
             NodesController currentNode = node.GetComponent<NodesController>();
-            //Debug.Log("node: " + node.name);
 
             currentNode.leftNode = findNode(currentNode.xCoordinate, currentNode.yCoordinate - 1);
             currentNode.rightNode = findNode(currentNode.xCoordinate, currentNode.yCoordinate + 1);
@@ -44,11 +47,10 @@ public class GameGridController : MonoBehaviour
 
             if(nodeController.xCoordinate == x && nodeController.yCoordinate == y)
             {
-                //Debug.Log("found node: " + node.name + "at" + x + "," + "y");
                 return nodeController;
             }
         }
-        return null; //if no node was found at target location
+        return null;
     }
 
     public bool allCellsCleared()

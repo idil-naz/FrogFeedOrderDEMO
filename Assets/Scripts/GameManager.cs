@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+//Script description:
+    //The GameManager keeps the materials for the objects to pull from.
+
+    //It is responsible for checking if the level has been completed, and also is in communication with the level manager to load and pass through levels.
+    //It is also responsible for keeping and updating the move count, and operating the restart button.
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -27,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        
         if (Instance == null)
         {
             Instance = this;
@@ -46,8 +52,6 @@ public class GameManager : MonoBehaviour
         {
             levelManager = FindObjectOfType<LevelManager>();
         }
-        
-
         ReinitLevel();
         InvokeRepeating("CheckLevelCompletion", 1f, 1f);
     }
@@ -58,7 +62,6 @@ public class GameManager : MonoBehaviour
         {
             movesLeftTxt.SetText("Moves Left: " + moves);
         }
-
     }
 
     private void OnEnable()
@@ -104,7 +107,6 @@ public class GameManager : MonoBehaviour
         if (movesLeftTxt == null)
         {
             movesLeftTxt = GameObject.Find("MoveLimit").GetComponent<TextMeshProUGUI>();
-
         }
     }
 
@@ -112,13 +114,13 @@ public class GameManager : MonoBehaviour
     {
         if (!levelCompleteTriggered && gridController != null && gridController.allCellsCleared())
         {
-            Debug.Log("level complete");
+            //Debug.Log("level complete");
             LevelComplete();
             
         }
         if(!levelCompleteTriggered && moves == 0)
         {
-            Debug.Log("level failed");
+            //Debug.Log("level failed");
             CancelInvoke();
         }
     }
@@ -131,14 +133,7 @@ public class GameManager : MonoBehaviour
         {
             LevelManager.Instance.NextLevel();
             levelCompleteTriggered = false;
-
         }
-        else
-        {
-            Debug.Log("level manager is null");
-
-        }
-
     }
 
     private void ReinitLevel()
@@ -147,7 +142,5 @@ public class GameManager : MonoBehaviour
         ReInitMoveLimit();
         gridController = GameObject.Find("GameGrid").GetComponent<GameGridController>();
         moves = 25;
-
-
     }
 }

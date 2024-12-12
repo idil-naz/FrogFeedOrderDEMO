@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Script Description:
+    //This script keeps info on the active level, and updates it when the level has been completed. It gets the levels from Unity's scene manager.
+
+
 public class LevelManager : MonoBehaviour
 {
     private int activelevelIndex;
     private static LevelManager instance;
-
-
     public static LevelManager Instance
     {
         get
@@ -16,14 +18,11 @@ public class LevelManager : MonoBehaviour
             if (instance == null)
             {
                 instance = FindObjectOfType<LevelManager>();
-                
             }
             return instance;
         }
     }
     
-
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -36,17 +35,10 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
         activelevelIndex = SceneManager.GetActiveScene().buildIndex;   
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void NextLevel()

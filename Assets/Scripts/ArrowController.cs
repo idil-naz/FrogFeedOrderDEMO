@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script description:
+    //ArrowController is responsible for inheriting the color of the cell it is above from the GameManager, as well the direction based on user input in the inspector.
+
 public class ArrowController : MonoBehaviour
 {
     public GameManager gameManager;

@@ -4,6 +4,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+//Script Description:
+    //The frog tongue is a Line Renderer type object, here the tongue is being rendered during collection and retraction, and the collection of the berries also happen. 
+    //This script allows for the initialization of points and positions, and creates starting and ending points for the tongue renderer according to the path of the frog.
+    //The collection of the berries is done via the collision of the tongue and the berries' colliders. 
+    //This script also triggers the disappearing of the cells during collection.
+
 public class FrogToungeScript : MonoBehaviour
 {
     private float duration;
@@ -13,26 +19,21 @@ public class FrogToungeScript : MonoBehaviour
     private List<Vector3> points;
 
     public bool berryCollectionCompleted = false;
-    //public bool pathingCompleted = false;
 
 
     private void Awake()
     {
         parentFrog = gameObject.transform.parent.GetComponent<FrogController>();
         frogTounge = GetComponent<LineRenderer>();
-
-       
     }
     // Start is called before the first frame update
     void Start()
     {
         LeanTween.init(800);
-
         if (parentFrog.frogParentCell == null)
         {
             parentFrog.frogParentCell = gameObject.transform.parent.parent.GetComponent<CellController>().gameObject;
         }
-
 
         duration = parentFrog.pathingExecutionTime;
         points = new List<Vector3>();
@@ -46,13 +47,20 @@ public class FrogToungeScript : MonoBehaviour
 
         if (parentFrog.frogParentCell != null)
         {
-            initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * (0.1f * parentFrog.frogParentCell.transform.GetSiblingIndex()));
+            if (parentFrog.frogParentCell.transform.GetSiblingIndex() == 1)
+            {
+                initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * 0.25f);
+            }
+            else
+            {
+                initPos = parentFrog.frogParentCell.transform.TransformPoint(Vector3.up * (0.1f * parentFrog.frogParentCell.transform.GetSiblingIndex()));
+
+            }
         }
 
         frogTounge.SetPosition(0, initPos);
         points.Add(initPos);
         frogTounge.positionCount = points.Count;
-        
     }
 
     public IEnumerator ToungeAnim()
@@ -115,7 +123,6 @@ public class FrogToungeScript : MonoBehaviour
             yield return null;
         }
 
-
        yield return new WaitForSeconds(2f);
 
         startTime = Time.time;
@@ -145,11 +152,9 @@ public class FrogToungeScript : MonoBehaviour
             }
 
             yield return null;
-
         }
 
         frogTounge.SetPosition(points.Count - 1, endingPos);
-
         yield return new WaitForSeconds(2f);
     }
 
@@ -168,7 +173,6 @@ public class FrogToungeScript : MonoBehaviour
 
         foreach (Collider col in sortedBerries)
         {
-           
             if (col.CompareTag("Grape") && parentFrog.berriesOnPath.Contains(col.gameObject))
             {
                 Vector3 berryPosition = col.transform.position;
@@ -176,7 +180,6 @@ public class FrogToungeScript : MonoBehaviour
                 Vector3 direction = (prevBerryPos - berryPosition).normalized;
                 Vector3 targetPosition = berryPosition + direction * spacing;
                 prevBerryPos = targetPosition;
-
 
                 float t = Mathf.Clamp01(Vector3.Distance(col.transform.position, tounguePos) / collectionRadar);
                 col.transform.position = Vector3.Lerp(col.transform.position, tounguePos, t * smooth);
@@ -202,7 +205,6 @@ public class FrogToungeScript : MonoBehaviour
                         berryCollectionCompleted = true;
 
                     });
-
                 }
 
                 //LEAN TWEEN ANIMATIONS WHEN TOUNGE PASSES BY THE CELL
@@ -219,12 +221,10 @@ public class FrogToungeScript : MonoBehaviour
                         {
                             LeanTween.cancel(berryParentCell);
                         }
-
                         LeanTween.scale(berryParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
                         {
                             if (!LeanTween.isTweening(berryParentCell.gameObject))
                             {
-
                                 if (berryParentNode != null && berryParentNode.GetComponent<NodesController>() != null)
                                 {
                                     berryParentNode.GetComponent<NodesController>().updateCellOnTop();
@@ -233,20 +233,16 @@ public class FrogToungeScript : MonoBehaviour
                                 {
                                     berryParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
                                 }
-
-
                                 if (berryParentNode != null && berryParentNode.GetComponent<NodesController>().cellOnTop == berryParentCell)
                                 {
                                     Destroy(berryParentCell.gameObject);
                                 }
-
                             }
                         });
                     }
-                    
                 }
-
             }
+
             //LEAN TWEEN ANIMATIONS FOR ARROW CELLS
             if (col.CompareTag("Arrow"))
             {
@@ -255,38 +251,28 @@ public class FrogToungeScript : MonoBehaviour
                     GameObject arrowParentCell = col.transform.parent.gameObject;
                     GameObject arrowParentNode = arrowParentCell.GetComponent<CellController>().cellParentNode;
                     arrowParentCell.transform.parent = null;
-
                     if(arrowParentNode.GetComponent<NodesController>().cellOnTop == arrowParentCell)
                     {
                         if (LeanTween.isTweening(arrowParentCell))
                         {
                             LeanTween.cancel(arrowParentCell);
                         }
-
                         LeanTween.scale(arrowParentCell, Vector3.zero, 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
                         {
                             if (!LeanTween.isTweening(arrowParentCell.gameObject))
                             {
-
                                 arrowParentNode.GetComponent<NodesController>().updateCellOnTop();
 
                                 if (arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>())
                                 {
                                     arrowParentNode.GetComponent<NodesController>().cellOnTop.GetComponent<CellController>().checkSelf();
                                 }
-
                                 Destroy(arrowParentCell.gameObject);
                             }
                         });
                     }
-
-                
                 }
             }
-
-
         }
     }
-
-
 }
